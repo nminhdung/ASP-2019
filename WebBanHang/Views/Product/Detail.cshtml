@@ -1,4 +1,4 @@
-﻿
+﻿@model WebBanHang.Product_0242
 @{
     ViewBag.Title = "Detail";
 }
@@ -25,7 +25,7 @@
                     <div class="card">
                         <article class="gallery-wrap">
                             <div class="img-big-wrap">
-                                <div> <a href="#"><img src="~/Content/images/items/15.jpg"></a></div>
+                                <div> <a href="#"><img src="~/Content/images/items/@Model.Avatar"></a></div>
                             </div> <!-- slider-product.// -->
                             <div class="thumbs-wrap">
                                 <a href="#" class="item-thumb"> <img src="~/Content/images/items/15.jpg"></a>
@@ -39,7 +39,7 @@
                 <main class="col-md-6">
                     <article class="product-info-aside">
 
-                        <h2 class="title mt-3">Hot sale unisex New Design Shoe </h2>
+                        <h2 class="title mt-3">@Model.Name</h2>
 
                         <div class="rating-wrap my-3">
                             <ul class="rating-stars">
@@ -59,8 +59,8 @@
                         </div> <!-- rating-wrap.// -->
 
                         <div class="mb-3">
-                            <var class="price h4">USD 465,00</var>
-                            <span class="text-muted">USD 562.65 incl. VAT</span>
+                            <var class="price h4">@Convert.ToDecimal(@Model.Price).ToString("#,##0") Vnđ</var>
+                            <span class="text-muted"> @Convert.ToDecimal(@Model.Price).ToString("#,##0") Vnđ bao gồm  VAT</span>
                         </div> <!-- price-detail-wrap .// -->
 
                         <p>

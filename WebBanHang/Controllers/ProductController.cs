@@ -9,9 +9,12 @@ namespace WebBanHang.Controllers
     public class ProductController : Controller
     {
         // GET: Product
-        public ActionResult Detail()
+        public ActionResult Detail(int Id)
         {
-            return View();
+            WebBanHangASPEntities webBanHangASP = new WebBanHangASPEntities();
+            //Lấy chi tiết sản phẩm
+            var objProduct = webBanHangASP.Product_0242.Where(n => n.Id == Id).FirstOrDefault();
+            return View(objProduct);
         }
         public ActionResult ProductListGrid()
         {

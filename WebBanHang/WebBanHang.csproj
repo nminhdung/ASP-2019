@@ -45,10 +45,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -122,15 +128,46 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Brand_0242.cs">
+      <DependentUpon>dbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Category_0242.cs">
+      <DependentUpon>dbModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="dbModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dbModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dbModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\HomeModel.cs" />
+    <Compile Include="Order_0242.cs">
+      <DependentUpon>dbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Product_0242.cs">
+      <DependentUpon>dbModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="User_0242.cs">
+      <DependentUpon>dbModel.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\admin\dist\css\adminlte.css" />
@@ -2066,6 +2103,12 @@
     <Content Include="Content\images\banners\slide1.jpg" />
     <Content Include="Content\images\banners\slide2.jpg" />
     <Content Include="Content\images\banners\slide3.jpg" />
+    <Content Include="Content\images\brand\acer.jpg" />
+    <Content Include="Content\images\brand\apple.jpg" />
+    <Content Include="Content\images\brand\xiaomi.jpg" />
+    <Content Include="Content\images\category\dienthoai.jpg" />
+    <Content Include="Content\images\category\dongho.jpg" />
+    <Content Include="Content\images\category\maytinh.jpg" />
     <Content Include="Content\images\favicon.ico" />
     <Content Include="Content\images\icons\flags\AU%402x.png" />
     <Content Include="Content\images\icons\flags\AU.png" />
@@ -2109,6 +2152,19 @@
     <Content Include="Content\images\items\7.jpg" />
     <Content Include="Content\images\items\8.jpg" />
     <Content Include="Content\images\items\9.jpg" />
+    <Content Include="Content\images\items\Acer Aspire 3.jpg" />
+    <Content Include="Content\images\items\Acer Nitro 5.jpg" />
+    <Content Include="Content\images\items\Apple Watch Series 7.jpeg" />
+    <Content Include="Content\images\items\applewatchseries7.jpeg" />
+    <Content Include="Content\images\items\asustrixg15.jpg" />
+    <Content Include="Content\images\items\Iphone12.jpg" />
+    <Content Include="Content\images\items\macbookairmodel.jpg" />
+    <Content Include="Content\images\items\macbookpro16inch.jpg" />
+    <Content Include="Content\images\items\macbookprom1.jpg" />
+    <Content Include="Content\images\items\macbookretina.jpg" />
+    <Content Include="Content\images\items\Xiaomi 11T.jpg" />
+    <Content Include="Content\images\items\xiaomilife5g.jpg" />
+    <Content Include="Content\images\items\xiaomiredmid10.jpg" />
     <Content Include="Content\images\logo-white.png" />
     <Content Include="Content\images\logo.png" />
     <Content Include="Content\images\logo.svg" />
@@ -2119,6 +2175,16 @@
     <Content Include="Content\images\posts\2.jpg" />
     <Content Include="Content\images\posts\3.jpg" />
     <Content Include="Content\images\posts\4.jpg" />
+    <Content Include="dbModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>dbModel.Context.cs</LastGenOutput>
+      <DependentUpon>dbModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="dbModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>dbModel.edmx</DependentUpon>
+      <LastGenOutput>dbModel.cs</LastGenOutput>
+    </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -2234,6 +2300,13 @@
     <Content Include="Content\admin\plugins\summernote\summernote.js.map" />
     <Content Include="Content\admin\plugins\summernote\summernote.min.js.map" />
     <Content Include="Content\admin\plugins\toastr\toastr.js.map" />
+    <EntityDeploy Include="dbModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>dbModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="dbModel.edmx.diagram">
+      <DependentUpon>dbModel.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -2271,7 +2344,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -2285,6 +2357,9 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
