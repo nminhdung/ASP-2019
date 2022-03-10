@@ -17,6 +17,10 @@ namespace WebBanHang.Controllers
             objHomeModel.ListCategory = webBanHangASP.Category_0242.ToList();
             //Kết nối lấy Sản phẩm deal
             objHomeModel.ListProductDeal = webBanHangASP.Product_0242.Where(n => n.TypeId == 1).ToList();
+            //Lấy sản phẩm theo brand
+            objHomeModel.ListProductBrand = webBanHangASP.Product_0242.Where(n => n.BrandId == 1).ToList();
+            //Lấy sản phẩm đề xuất
+            objHomeModel.ListProductRecommend = webBanHangASP.Product_0242.Where(n => n.TypeId == 2).ToList();
             return View(objHomeModel);
         }
 

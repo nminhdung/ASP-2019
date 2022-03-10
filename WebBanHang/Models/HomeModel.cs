@@ -9,5 +9,7 @@ namespace WebBanHang.Models
     {
         public List<Category_0242> ListCategory { get; set; }
         public List<Product_0242> ListProductDeal { get; set; }
+        public List<Product_0242> ListProductBrand { get; set; }
+        public List<Product_0242> ListProductRecommend { get; set; }
     }
 }
