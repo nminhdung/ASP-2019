@@ -134,6 +134,7 @@
     <Compile Include="Category_0242.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\BrandController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -157,6 +158,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\BrandModel.cs" />
+    <Compile Include="Models\CategoryModel.cs" />
     <Compile Include="Models\HomeModel.cs" />
     <Compile Include="Order_0242.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
@@ -2336,10 +2339,15 @@
     <Content Include="Views\Product\Detail.cshtml" />
     <Content Include="Views\Category\CategoryList.cshtml" />
     <Content Include="Views\Cart\ShoppingCart.cshtml" />
-    <Content Include="Views\Product\ProductListGrid.cshtml" />
-    <Content Include="Views\Product\ProductListLarge.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\User\Register.cshtml" />
+    <Content Include="Views\Category\CategoryProduct.cshtml" />
+    <Content Include="Views\Category\CategoryProductGrid.cshtml" />
+    <Content Include="Views\Category\CategoryProductList.cshtml" />
+    <Content Include="Views\Brand\ListBrand.cshtml" />
+    <Content Include="Views\Brand\ProductBrand.cshtml" />
+    <Content Include="Views\Brand\ProductBrandGrid.cshtml" />
+    <Content Include="Views\Brand\ProductBrandList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

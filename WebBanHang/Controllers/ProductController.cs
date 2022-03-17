@@ -16,13 +16,6 @@ namespace WebBanHang.Controllers
             var objProduct = webBanHangASP.Product_0242.Where(n => n.Id == Id).FirstOrDefault();
             return View(objProduct);
         }
-        public ActionResult ProductListGrid()
-        {
-            return View();
-        }
-        public ActionResult ProductListLarge()
-        {
-            return View();
-        }
+       
     }
 }

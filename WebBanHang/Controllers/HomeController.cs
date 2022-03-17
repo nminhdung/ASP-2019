@@ -21,6 +21,8 @@ namespace WebBanHang.Controllers
             objHomeModel.ListProductBrand = webBanHangASP.Product_0242.Where(n => n.BrandId == 1).ToList();
             //Lấy sản phẩm đề xuất
             objHomeModel.ListProductRecommend = webBanHangASP.Product_0242.Where(n => n.TypeId == 2).ToList();
+            //Kết nối lấy Sản phẩm hot
+            objHomeModel.ListProductHot = webBanHangASP.Product_0242.Where(n => n.TypeId == 3).ToList();
             return View(objHomeModel);
         }
 

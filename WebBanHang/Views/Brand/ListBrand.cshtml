@@ -1,20 +1,22 @@
-﻿@model WebBanHang.Models.CategoryModel
+﻿@model WebBanHang.Models.BrandModel
 @{
-    ViewBag.Title = "CategoryList";
+    ViewBag.Title = "ListBrand";
 }
+
 <section class="section-content padding-y">
     <div class="container">
 
         <nav class="row">
-            @foreach (var item in @Model.ListCategory)
+            @foreach (var item in @Model.ListBrand)
             {
                 <div class="col-md-3">
                     <div class="card card-category">
-                        <a href="@Url.Action("CategoryProduct", "Category", new {id=item.Id })" class="img-wrap" style="background: #dee4ff;width:100%;">
-                            <img src="~/Content/images/category/@item.Avatar" />
+                        <a href="@Url.Action("ProductBrand", "Brand", new {id=item.Id })" class="img-wrap" style="background: #dee4ff;width:100%;">
+                            <img src="~/Content/images/brand/@item.Avatar" />
+                           
                         </a>
                         <div class="card-body">
-                            <h4 class="card-title"><a href="@Url.Action("CategoryProduct", "Category", new {id=item.Id })">@item.Name</a></h4>
+                            <h4 class="card-title"><a href="@Url.Action("ProductBrand", "Brand", new { id = item.Id })">@item.Name</a></h4>
                             <ul class="list-menu">
                                 <li><a href="">@item.Name</a></li>
                                 <li><a href="">@item.Name</a></li>
@@ -56,4 +58,4 @@
 
     </div>
 </section>
-<!-- ========================= SECTION SUBSCRIBE END// ========================= -->
+

@@ -1,36 +1,22 @@
 ﻿@model WebBanHang.Models.CategoryModel
 @{
-    ViewBag.Title = "CategoryList";
+    ViewBag.Title = "CategoryProduct";
 }
+
+<!-- ========================= SECTION CONTENT ========================= -->
 <section class="section-content padding-y">
     <div class="container">
 
-        <nav class="row">
-            @foreach (var item in @Model.ListCategory)
-            {
-                <div class="col-md-3">
-                    <div class="card card-category">
-                        <a href="@Url.Action("CategoryProduct", "Category", new {id=item.Id })" class="img-wrap" style="background: #dee4ff;width:100%;">
-                            <img src="~/Content/images/category/@item.Avatar" />
-                        </a>
-                        <div class="card-body">
-                            <h4 class="card-title"><a href="@Url.Action("CategoryProduct", "Category", new {id=item.Id })">@item.Name</a></h4>
-                            <ul class="list-menu">
-                                <li><a href="">@item.Name</a></li>
-                                <li><a href="">@item.Name</a></li>
-                                <li><a href="">@item.Name</a></li>
-                                <li><a href="">@item.Name</a></li>
-                                <li><a href="">@item.Name</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div> <!-- col.// -->
-            }
 
-        </nav> <!-- row.// -->
+        @if (Model.view == 0)
+        {
+            @RenderPage("~/Views/Category/CategoryProductList.cshtml");
 
-
-    </div> <!-- container .//  -->
+        }
+        else
+        {
+            @RenderPage("~/Views/Category/CategoryProductGrid.cshtml");
+        }
 </section>
 <!-- ========================= SECTION CONTENT END// ========================= -->
 <!-- ========================= SECTION SUBSCRIBE  ========================= -->
