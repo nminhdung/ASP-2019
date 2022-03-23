@@ -131,13 +131,13 @@ a:hover {
   transition: .5s; }
 
 .hover-bg:hover {
-  background: #ff6a00;
+  background: #883dcb;
   /* For browsers that do not support gradients */
   /* For Safari 5.1 to 6.0 */
   /* For Opera 11.1 to 12.0 */
   /* For Firefox 3.6 to 15 */
-  background: -webkit-gradient(linear, left top, right bottom, from(#ff6a00), to(#ff6a00));
-  background: linear-gradient(to bottom right, #ff6a00, #ff6a00);
+  background: -webkit-gradient(linear, left top, right bottom, from(#883dcb), to(#883dcb));
+  background: linear-gradient(to bottom right, #883dcb, #883dcb);
   /* Standard syntax */
   -webkit-transition: .5s;
   transition: .5s; }
@@ -231,7 +231,7 @@ article:after,
   background-color: #fff; }
 
 .bg-orange {
-  background-color: #ff6a00; }
+  background-color: #883dcb; }
 
 .bg-green {
   background-color: #00b517; }
@@ -315,7 +315,7 @@ article:after,
   transition: .5s; }
 
 .bg-pattern {
-  background-image: url(../images/banners/bg-pattern.svg), linear-gradient(135deg, #ff6a00, #12225b);
+  background-image: url(../images/banners/bg-pattern.svg), linear-gradient(135deg, #883dcb, #12225b);
   background-size: cover, auto;
   background-repeat: no-repeat, repeat;
   background-position: 0px 0px, 50% 50%; }
@@ -345,8 +345,8 @@ article:after,
     /* For Safari 5.1 to 6.0 */
     /* For Opera 11.1 to 12.0 */
     /* For Firefox 3.6 to 15 */
-    background: -webkit-gradient(linear, left top, right bottom, from(#ff6a00), to(#12225b));
-    background: linear-gradient(to bottom right, #ff6a00, #12225b);
+    background: -webkit-gradient(linear, left top, right bottom, from(#883dcb), to(#12225b));
+    background: linear-gradient(to bottom right, #883dcb, #12225b);
     /* Standard syntax */ }
   .overlay-gradient:hover:before {
     opacity: .9; }
@@ -436,10 +436,10 @@ p:last-child {
   display: inline-block; }
 
 .navbar-main .nav-link:hover {
-  color: #ff6a00; }
+  color: #883dcb; }
 
 .search-header {
-  border: 2px solid #ff6a00;
+  border: 2px solid #883dcb;
   border-radius: 0.55rem; }
   .search-header .form-control, .search-header .custom-select {
     border-color: transparent; }
@@ -459,18 +459,19 @@ p:last-child {
     display: inline-block;
     position: relative;
     text-align: center; }
-  .widget-header .icon-area {
-    font-size: 24px;
-    display: inline-block;
-    width: 36px;
-    height: 30px;
-    color: #969696; }
+    .widget-header .icon-area {
+        font-size: 24px;
+        display: inline-block;
+        width: 36px;
+        height: 30px;
+        color: #883dcb;
+    }
     .widget-header .icon-area .notify {
       position: absolute;
       top: 0px;
       right: 8%; }
   .widget-header .icon {
-    color: #969696; }
+    color: #883dcb; }
     .widget-header .icon .notify {
       position: absolute;
       top: 0;
@@ -498,7 +499,7 @@ p:last-child {
 .section-footer ul a {
   color: inherit; }
   .section-footer ul a:hover {
-    color: #ff6a00; }
+    color: #883dcb; }
 
 .section-footer .logo-footer {
   height: 40px; }
@@ -566,7 +567,7 @@ p:last-child {
     border-color: #9099a6; }
 
 .btn-light.active i {
-  color: #ff6a00; }
+  color: #883dcb; }
 
 .btn .text + i {
   margin-left: 10px; }
@@ -594,7 +595,7 @@ p:last-child {
     margin-bottom: 5px;
     color: #212529; }
   .itemside a.title:hover {
-    color: #ff6a00; }
+    color: #883dcb; }
 
 a.itemside {
   color: initial; }
@@ -715,7 +716,7 @@ ul.row, ul.row-sm {
     margin-bottom: 7px; }
   .list-normal li:before {
     content: "\2022";
-    color: #ff6a00;
+    color: #883dcb;
     display: inline-block;
     width: 1em;
     margin-left: -1em; }
@@ -729,7 +730,7 @@ ul.row, ul.row-sm {
   .list-menu a {
     color: #212529; }
     .list-menu a:hover {
-      color: #ff6a00; }
+      color: #883dcb; }
 
 .cols-two {
   -webkit-column-count: 2;
@@ -747,14 +748,14 @@ ul.row, ul.row-sm {
 a[class*='card'] {
   color: initial; }
   a[class*='card']:hover .title {
-    color: #ff6a00; }
+    color: #883dcb; }
 
 /* BASE STYLE FOR PRODUCT ITEM */
 [class*='card-product'] a.title {
   color: #212529;
   display: block; }
   [class*='card-product'] a.title:hover {
-    color: #ff6a00; }
+    color: #883dcb; }
 
 [class*='card-product'] .img-wrap .badge {
   top: 10px;
@@ -797,7 +798,7 @@ a[class*='card'] {
     .card-product-grid .topbar a {
       color: #ccc; }
       .card-product-grid .topbar a:hover {
-        color: #ff6a00; }
+        color: #883dcb; }
   .card-product-grid .fix-height {
     height: 80px;
     overflow: hidden; }
@@ -874,7 +875,7 @@ a[class*='card'] {
     -webkit-transition: .2s;
     transition: .2s; }
   .card-category:hover {
-    border-color: #ff6a00; }
+    border-color: #883dcb; }
 
 .card-banner {
   display: -webkit-box;
@@ -1118,7 +1119,7 @@ a[class*='card'] {
         padding: 10px 16px;
         display: block; }
     .nav-home-aside .menu-category a:hover {
-      color: #ff6a00;
+      color: #883dcb;
       -webkit-transition: all 0.3s;
       transition: all 0.3s; }
     .nav-home-aside .menu-category li:hover .submenu {
@@ -1139,7 +1140,7 @@ a[class*='card'] {
     color: #212529;
     padding: 5px 0; }
     .dropdown-large a:hover {
-      color: #ff6a00; }
+      color: #883dcb; }
 
 @media all and (min-width: 992px) {
   .dropdown-large {
@@ -1175,8 +1176,8 @@ a[class*='card'] {
     z-index: -1;
     opacity: 0; }
   .checkbox-btn input:checked ~ .btn {
-    border-color: #ff6a00;
-    background-color: #ff6a00;
+    border-color: #883dcb;
+    background-color: #883dcb;
     color: #fff; }
 
 .js-check {
@@ -1188,7 +1189,7 @@ a[class*='card'] {
     top: 21px;
     left: 16px; }
   .js-check.active {
-    border-color: #ff6a00; }
+    border-color: #883dcb; }
 
 .js-check.box {
   width: 100%;
@@ -1291,7 +1292,7 @@ body {
     display: inline-block;
     overflow: hidden; }
     .gallery-wrap .thumbs-wrap .item-thumb:hover {
-      border-color: #ff6a00; }
+      border-color: #883dcb; }
   .gallery-wrap .thumbs-wrap img {
     max-width: 100%;
     max-height: 100%;
@@ -1355,3 +1356,4 @@ html[dir='rtl'] .itemside .info {
   padding-right: 15px;
   padding-left: initial; }
 /*# sourceMappingURL=ui.css.map */
+

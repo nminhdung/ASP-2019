@@ -37,7 +37,7 @@
                 <div class="row align-items-center">
                     <div class="col-xl-2 col-lg-3 col-md-12">
                         <a href="/" class="brand-wrap">
-                            <img class="logo" src="~/Content/images/logo.png">
+                            <img class="logo" style="max-height:70px;"src="~/Content/images/logo.png">
 
                         </a> <!-- brand-wrap.// -->
                     </div>
@@ -63,12 +63,48 @@
                     <div class="col-xl-4 col-lg-4 col-md-6">
                         <div class="widgets-wrap float-md-right">
                             <div class="widget-header mr-3">
-                                <a href="#" class="widget-view">
-                                    <div class="icon-area">
-                                        <i class="fa fa-user"></i>
-                                        <span class="notify">3</span>
+
+                                @if (Session["idUser"] != null)
+                                {
+                                    <div class="widget-header mr-3">
+                                        <a href="#" class="widget-view">
+                                            <div class="icon-area">
+                                                <i class="fa fa-user"></i>
+                                                <span class="notify">3</span>
+                                            </div>
+                                            <small class="text"> @Session["FullName"] </small>
+                                        </a>
                                     </div>
-                                    <small class="text"> My profile </small>
+                                    <div class="widget-header mr-3">
+                                        <a href="@Url.Action("Logout","User")" class="widget-view">
+                                            <div class="icon-area">
+                                                <i class="fa fa-user"></i>
+                                            </div>
+                                            <small class="text"> Log out </small>
+                                        </a>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="widget-header mr-3">
+                                        <a href="@Url.Action("Login","User")" class="widget-view">
+                                            <div class="icon-area">
+                                                <i class="fa fa-user"></i>
+
+                                            </div>
+                                            <small class="text"> Login </small>
+                                        </a>
+                                    </div>
+                                    <div class="widget-header mr-3">
+                                        <a href="@Url.Action("Register","User")" class="widget-view">
+                                            <div class="icon-area">
+                                                <i class="fa fa-user"></i>
+
+                                            </div>
+                                            <small class="text"> Register </small>
+                                        </a>
+                                    </div>
+                                }
                                 </a>
                             </div>
                             <div class="widget-header mr-3">

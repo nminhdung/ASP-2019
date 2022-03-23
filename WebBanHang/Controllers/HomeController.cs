@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using WebBanHang.Models;
@@ -25,7 +27,5 @@ namespace WebBanHang.Controllers
             objHomeModel.ListProductHot = webBanHangASP.Product_0242.Where(n => n.TypeId == 3).ToList();
             return View(objHomeModel);
         }
-
-   
     }
 }

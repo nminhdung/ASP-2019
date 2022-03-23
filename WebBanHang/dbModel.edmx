@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="WebBanHangASPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="WebBanHangASPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Brand_0242">
           <Key>
             <PropertyRef Name="Id" />
@@ -50,12 +50,12 @@
           <Property Name="Avatar" Type="nchar" MaxLength="100" />
           <Property Name="CategoryId" Type="int" />
           <Property Name="BrandId" Type="int" />
-          <Property Name="FullDescription" Type="nvarchar" MaxLength="500" />
           <Property Name="Price" Type="float" />
           <Property Name="PriceDiscount" Type="float" />
-          <Property Name="Slug" Type="nvarchar" MaxLength="50" />
+          <Property Name="Slug" Type="nvarchar" MaxLength="100" />
           <Property Name="TypeId" Type="int" />
-          <Property Name="ShortDesc" Type="nvarchar" MaxLength="100" />
+          <Property Name="ShortDesc" Type="nvarchar" MaxLength="500" />
+          <Property Name="FullDescription" Type="ntext" />
         </EntityType>
         <EntityType Name="User_0242">
           <Key>
@@ -75,8 +75,7 @@
           <EntitySet Name="Product_0242" EntityType="Self.Product_0242" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User_0242" EntityType="Self.User_0242" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="WebBanHangASPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -125,12 +124,12 @@
           <Property Name="Avatar" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
           <Property Name="CategoryId" Type="Int32" />
           <Property Name="BrandId" Type="Int32" />
-          <Property Name="FullDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="FullDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Price" Type="Double" />
           <Property Name="PriceDiscount" Type="Double" />
-          <Property Name="Slug" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Slug" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="TypeId" Type="Int32" />
-          <Property Name="ShortDesc" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ShortDesc" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="User_0242">
           <Key>

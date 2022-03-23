@@ -1,0 +1,100 @@
+﻿@model IEnumerable<WebBanHang.Product_0242>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title" style="margin-right:20px;">Tất cả sản phẩm</h3>
+                        <p>
+                            @Html.ActionLink("Thêm sản phẩm", "Create")
+                        </p>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        
+                        <table id="example2" class="table table-bordered table-hover">
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Name)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Avatar)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.CategoryId)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.BrandId)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.FullDescription)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Price)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.PriceDiscount)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Slug)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.TypeId)
+                                </th>
+                                <th></th>
+                            </tr>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Avatar)
+                                        @*<img style="width:10em;" src="~/Content/images/items/@item.Avatar" />*@
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.CategoryId)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.BrandId)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.FullDescription)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Price)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.PriceDiscount)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Slug)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TypeId)
+                                    </td>
+                                    <td>
+                                        <a href="@Url.Action("Edit", "Product", new { id = item.Id })" style="display:flex;align-items:center;">
+                                            <i class="fas fa-edit" style="margin-right:2px;color:green"></i> Edit|
+                                        </a>
+                                        <a href="@Url.Action("Details", "Product", new { id = item.Id })" style="display: flex;align-items: center;">
+                                            <i class="fas fa-info" style="margin-right:2px;"></i> Details|
+                                        </a>
+                                        <a href="@Url.Action("Delete", "Product", new { id = item.Id })" style="display: flex;align-items: center;">
+                                            <i class="fas fa-trash" style="margin-right:2px;color:red;"></i> Delete
+                                        </a>
+
+                                    </td>
+                                </tr>
+                            }
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>

@@ -64,12 +64,7 @@
                         </div> <!-- price-detail-wrap .// -->
 
                         <p>
-                            Compact sport shoe for running, consectetur adipisicing elit, sed do eiusmod
-                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                            consequat. Duis aute irure dolor. Ut enim ad minim veniam,
-                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                            consequat
+                          @Model.ShortDesc
                         </p>
 
 
@@ -126,14 +121,11 @@
         <div class="container">
 
             <div class="row">
-                <div class="col-md-8">
-                    <h5 class="title-description">Description</h5>
-                    <p>
-                        Lava stone grill, suitable for natural gas, with cast-iron cooking grid, piezo ignition, stainless steel burners, water tank, and thermocouple. Thermostatic adjustable per zone. Comes complete with lava rocks. Adjustable legs. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                        consequat.
-                    </p>
+                <div class="col-md-9">
+                    <h5 class="title-description">Mô tả chi tiết</h5>
+                  
+                      @Html.Raw(@Model.FullDescription)
+                  
                     <ul class="list-check">
                         <li>Material: Stainless steel</li>
                         <li>Weight: 82kg</li>
@@ -165,7 +157,7 @@
                     </table>
                 </div> <!-- col.// -->
 
-                <aside class="col-md-4">
+                <aside class="col-md-3">
 
                     <div class="box">
 
