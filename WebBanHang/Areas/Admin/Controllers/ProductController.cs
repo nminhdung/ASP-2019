@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -64,6 +65,27 @@ namespace WebBanHang.Areas.Admin.Controllers
             webBanHangASP.Product_0242.Remove(objProduct);
             webBanHangASP.SaveChanges();
             return RedirectToAction("Index");
+        }
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            var objProduct = webBanHangASP.Product_0242.Where(n => n.Id == id).FirstOrDefault();
+            return View(objProduct);
+        }
+        [HttpPost]
+        public ActionResult Edit(int id,Product_0242 objProduct)
+        {
+            if (objProduct.ImageUpload != null)
+            {
+                string fileName = Path.GetFileNameWithoutExtension(objProduct.ImageUpload.FileName);
+                string extension = Path.GetExtension(objProduct.ImageUpload.FileName);
+                fileName = fileName + "_" + long.Parse(DateTime.Now.ToString("yyyyMMddhhmmss")) + extension;
+                objProduct.Avatar = fileName;
+                objProduct.ImageUpload.SaveAs(Path.Combine(Server.MapPath("~/Content/images/"), fileName));
+            }
+            webBanHangASP.Entry(objProduct).State = EntityState.Modified;
+            webBanHangASP.SaveChanges();
+            return View(objProduct);
         }
     }
 }
