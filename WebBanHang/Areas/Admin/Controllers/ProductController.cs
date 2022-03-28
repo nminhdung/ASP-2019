@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using static WebBanHang.Common;
 
 namespace WebBanHang.Areas.Admin.Controllers
 {
@@ -21,8 +22,40 @@ namespace WebBanHang.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Create()
         {
+            Common objCommon = new Common();
+            var lstCat = webBanHangASP.Category_0242.ToList();
+            //Converted sang select list dang value,text
+            ListtoDataTableConverter converter = new ListtoDataTableConverter();
+            DataTable dtCategory = converter.ToDataTable(lstCat);
+            ViewBag.ListCategory = objCommon.ToSelectList(dtCategory, "Id", "Name");
+
+            var lstBrand = webBanHangASP.Brand_0242.ToList();
+            DataTable dtBrand = converter.ToDataTable(lstBrand);
+            ViewBag.ListBrand = objCommon.ToSelectList(dtBrand, "Id", "Name");
+
+            //Loai san pham
+            List<ProductType> lstProductType = new List<ProductType>();
+            ProductType objProductType = new ProductType();
+            objProductType.Id = 01;
+            objProductType.Name = "Giảm giá sốc";
+            lstProductType.Add(objProductType);
+
+            objProductType = new ProductType();
+            objProductType.Id = 02;
+            objProductType.Name = "Sản phẩm đề xuất";
+            lstProductType.Add(objProductType);
+
+            objProductType = new ProductType();
+            objProductType.Id = 03;
+            objProductType.Name = "Sản phẩm Hot";
+            lstProductType.Add(objProductType);
+
+            DataTable dtProductType = converter.ToDataTable(lstProductType);
+            ViewBag.ProductType = objCommon.ToSelectList(dtProductType, "Id", "Name");
+
             return View();
         }
+        [ValidateInput(false)]
         [HttpPost]
         public ActionResult Create(Product_0242 objProduct)
         {
@@ -31,7 +64,7 @@ namespace WebBanHang.Areas.Admin.Controllers
                 {
                     string fileName = Path.GetFileNameWithoutExtension(objProduct.ImageUpload.FileName);
                     string extension = Path.GetExtension(objProduct.ImageUpload.FileName);
-                    fileName = fileName + extension + "_" + long.Parse(DateTime.Now.ToString("yyyyMMddhhmmss")) + extension;
+                    fileName = fileName +  "_" + long.Parse(DateTime.Now.ToString("yyyyMMddhhmmss")) + extension;
                     objProduct.Avatar = fileName;
                     objProduct.ImageUpload.SaveAs(Path.Combine(Server.MapPath("~/Content/images/"),fileName));
                 }

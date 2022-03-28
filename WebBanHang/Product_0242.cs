@@ -26,6 +26,7 @@ namespace WebBanHang
         public string Slug { get; set; }
         public Nullable<int> TypeId { get; set; }
         public string ShortDesc { get; set; }
+
         [NotMapped]
         public System.Web.HttpPostedFileBase ImageUpload { get; set; }
     }
