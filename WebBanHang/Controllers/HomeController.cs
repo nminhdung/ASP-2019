@@ -5,6 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using WebBanHang.Context;
 using WebBanHang.Models;
 
 namespace WebBanHang.Controllers
@@ -16,7 +17,7 @@ namespace WebBanHang.Controllers
         {
             HomeModel objHomeModel = new HomeModel();
             //Kết nối lấy danh mục
-            objHomeModel.ListCategory = webBanHangASP.Category_0242.ToList();
+            objHomeModel.ListCategory = webBanHangASP.Category_0242.ToList() ;
             //Kết nối lấy Sản phẩm deal
             objHomeModel.ListProductDeal = webBanHangASP.Product_0242.Where(n => n.TypeId == 1).ToList();
             //Lấy sản phẩm theo brand

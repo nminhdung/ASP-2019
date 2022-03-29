@@ -1,0 +1,76 @@
+﻿@model IEnumerable<WebBanHang.Context.Category_0242>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Avatar)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Slug)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ShowOnHomePage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DisplayOrder)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Deleted)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.isPopular)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Avatar)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Slug)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ShowOnHomePage)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DisplayOrder)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Deleted)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.isPopular)
+        </td>
+        <td>
+            <a href="@Url.Action("Edit", "Category", new { id = item.Id })" style="display:flex;align-items:center;">
+                <i class="fas fa-edit" style="margin-right:2px;color:green"></i> Edit|
+            </a>
+            <a href="@Url.Action("Details", "Category", new { id = item.Id })" style="display: flex;align-items: center;">
+                <i class="fas fa-info" style="margin-right:2px;"></i> Details|
+            </a>
+            <a href="@Url.Action("Delete", "Category", new { id = item.Id })" style="display: flex;align-items: center;">
+                <i class="fas fa-trash" style="margin-right:2px;color:red;"></i> Delete
+            </a>
+
+        </td>
+    </tr>
+}
+
+</table>

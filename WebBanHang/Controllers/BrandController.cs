@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebBanHang.Models;
+using WebBanHang.Context;
 namespace WebBanHang.Controllers
 {
     public class BrandController : Controller

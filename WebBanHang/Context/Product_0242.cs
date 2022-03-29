@@ -7,12 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebBanHang
+namespace WebBanHang.Context
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations.Schema;
-
+    
     public partial class Product_0242
     {
         public int Id { get; set; }
@@ -26,8 +25,5 @@ namespace WebBanHang
         public string Slug { get; set; }
         public Nullable<int> TypeId { get; set; }
         public string ShortDesc { get; set; }
-
-        [NotMapped]
-        public System.Web.HttpPostedFileBase ImageUpload { get; set; }
     }
 }

@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebBanHang
+namespace WebBanHang.Context
 {
     using System;
     using System.Data.Entity;

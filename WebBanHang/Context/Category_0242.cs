@@ -7,18 +7,20 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebBanHang
+namespace WebBanHang.Context
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class User_0242
+    public partial class Category_0242
     {
         public int Id { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
-        public Nullable<bool> IsAdmin { get; set; }
+        public string Name { get; set; }
+        public string Avatar { get; set; }
+        public string Slug { get; set; }
+        public Nullable<bool> ShowOnHomePage { get; set; }
+        public Nullable<int> DisplayOrder { get; set; }
+        public Nullable<bool> Deleted { get; set; }
+        public Nullable<int> isPopular { get; set; }
     }
 }
