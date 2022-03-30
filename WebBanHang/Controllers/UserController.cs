@@ -32,11 +32,12 @@ namespace WebBanHang.Controllers
                     webBanHangASP.Configuration.ValidateOnSaveEnabled = false;
                     webBanHangASP.User_0242.Add(_user);
                     webBanHangASP.SaveChanges();
+                    TempData["msg"] = "Đăng ký thành công";
                     return RedirectToAction("Login");
                 }
                 else
                 {
-                    ViewBag.error = "Email already exists";
+                    TempData["msg"] = "Đăng ký thất bại";
                     return View();
                 }
 
@@ -80,11 +81,13 @@ namespace WebBanHang.Controllers
                     Session["FullName"] = data.FirstOrDefault().FirstName + " " + data.FirstOrDefault().LastName;
                     Session["Email"] = data.FirstOrDefault().Email;
                     Session["idUser"] = data.FirstOrDefault().Id;
+                    Session["IsAdmin"] = data.FirstOrDefault().IsAdmin;
+                    TempData["msg"] = "Đăng nhập thành công";
                     return Redirect("/");
                 }
                 else
                 {
-                    ViewBag.error = "Login failed";
+                    TempData["Error"] = "Đăng nhập thất bại";
                     return RedirectToAction("Login");
                 }
             }
@@ -96,6 +99,7 @@ namespace WebBanHang.Controllers
         public ActionResult Logout()
         {
             Session.Clear();//remove session
+            TempData["msg"] = "Đăng xuất thành công";
             return RedirectToAction("Login");
         }
     }

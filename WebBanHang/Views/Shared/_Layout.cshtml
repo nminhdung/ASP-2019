@@ -37,7 +37,7 @@
                 <div class="row align-items-center">
                     <div class="col-xl-2 col-lg-3 col-md-12">
                         <a href="/" class="brand-wrap">
-                            <img class="logo" style="max-height:70px;"src="~/Content/images/logo.png">
+                            <img class="logo" style="max-height:70px;" src="~/Content/images/logo.png">
 
                         </a> <!-- brand-wrap.// -->
                     </div>
@@ -66,23 +66,39 @@
 
                                 @if (Session["idUser"] != null)
                                 {
-                                    <div class="widget-header mr-3">
-                                        <a href="#" class="widget-view">
+                                    <div class="widget-header mr-3   dropdown">
+                                        <a href="#" class="widget-view" data-toggle="dropdown">
                                             <div class="icon-area">
                                                 <i class="fa fa-user"></i>
                                                 <span class="notify">3</span>
                                             </div>
                                             <small class="text"> @Session["FullName"] </small>
                                         </a>
+
+                                        <div class="dropdown-menu dropdown-menu-right">
+
+                                            @if (Session["IsAdmin"] != null && Session["IsAdmin"].Equals(true))
+                                            {
+                                                <a href="/Admin" class="dropdown-item d-flex ">
+                                                    <i class="fa fa-user mr-3"></i>
+                                                    <small class=""> Trang quản trị</small>
+                                                </a>
+                                            }
+                                            <a href="#" class="dropdown-item d-flex ">
+
+                                                <i class="fa fa-store mr-3"></i>
+                                                <small class="">Đơn hàng</small>
+                                            </a>
+
+                                            <a href="@Url.Action("Logout","User")" class="dropdown-item d-flex  ">
+                                                <i class="fas fa-sign-out-alt mr-3"></i>
+                                                <small class=""> Đăng xuất </small>
+                                            </a>
+
+                                        </div>
+
                                     </div>
-                                    <div class="widget-header mr-3">
-                                        <a href="@Url.Action("Logout","User")" class="widget-view">
-                                            <div class="icon-area">
-                                                <i class="fa fa-user"></i>
-                                            </div>
-                                            <small class="text"> Log out </small>
-                                        </a>
-                                    </div>
+
                                 }
                                 else
                                 {
@@ -92,7 +108,7 @@
                                                 <i class="fa fa-user"></i>
 
                                             </div>
-                                            <small class="text"> Login </small>
+                                            <small class="text"> Đăng nhập </small>
                                         </a>
                                     </div>
                                     <div class="widget-header mr-3">
@@ -101,7 +117,7 @@
                                                 <i class="fa fa-user"></i>
 
                                             </div>
-                                            <small class="text"> Register </small>
+                                            <small class="text"> Đăng ký </small>
                                         </a>
                                     </div>
                                 }
@@ -113,23 +129,16 @@
                                         <i class="fa fa-comment-dots"></i>
                                         <span class="notify">1</span>
                                     </div>
-                                    <small class="text"> Message </small>
+                                    <small class="text"> Thông báo </small>
                                 </a>
                             </div>
-                            <div class="widget-header mr-3">
-                                <a href="#" class="widget-view">
-                                    <div class="icon-area">
-                                        <i class="fa fa-store"></i>
-                                    </div>
-                                    <small class="text"> Orders </small>
-                                </a>
-                            </div>
+
                             <div class="widget-header">
                                 <a href="/Cart/ShoppingCart" class="widget-view">
                                     <div class="icon-area">
                                         <i class="fa fa-shopping-cart"></i>
                                     </div>
-                                    <small class="text"> Cart </small>
+                                    <small class="text"> Giỏ hàng </small>
                                 </a>
                             </div>
                         </div> <!-- widgets-wrap.// -->
@@ -274,6 +283,14 @@
         </div><!-- //container -->
     </footer>
     <script src="~/Scripts/ckeditor/ckeditor.js"></script>
+    <script src="~/Scripts/js/index.js"></script>
+    @if (TempData["msg"] != null)
+    {
+        <script>Toast("", '@TempData["msg"]',"")</script>
+    }
+    
+
+
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
