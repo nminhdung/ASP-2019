@@ -1,17 +1,17 @@
-﻿@model WebBanHang.Context.Category_0242
+﻿@model WebBanHang.Context.Brand_0242
 
 @{
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+<h2>Thêm mới</h2>
 
-@using (Html.BeginForm("Create", "Category", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("Create", "Brand", FormMethod.Post, new { enctype = "multipart/form-data" })) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Category_0242</h4>
+        <h4>Brand_0242</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -30,18 +30,18 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Slug, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Slug, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Slug, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
             @Html.LabelFor(model => model.ShowOnHomePage, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.ShowOnHomePage, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ShowOnHomePage, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Slug, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Slug, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Slug, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -58,14 +58,6 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Deleted, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Deleted, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.isPopular, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.isPopular, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.isPopular, "", new { @class = "text-danger" })
             </div>
         </div>
 

@@ -20,4 +20,10 @@ namespace WebBanHang.Context
         [NotMapped]
         public System.Web.HttpPostedFileBase ImageUpload { get; set; }
     }
+    [MetadataType(typeof(BrandMasterData))]
+    public partial class Brand_0242
+    {
+        [NotMapped]
+        public System.Web.HttpPostedFileBase ImageUpload { get; set; }
+    }
 }

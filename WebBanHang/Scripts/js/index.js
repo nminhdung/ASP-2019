@@ -17,15 +17,15 @@ function initToast(type,message,title){
 		toastContainer.removeChild(div)
 	}
 	setTimeout(()=>{
-			handleClose();
+	   handleClose();
 	},3000)
 	div.innerHTML=`
    <div class="toast-header">
-    <i class="fas fa-bell mr-3"></i>
+    <i class="fas fa-bell mr-3 text-info"></i>
     <strong class="me-auto">${title != "" ? title : "Thông báo:"}</strong>
     <small></small>
-    <button type="button" class="btn-close btn" data-bs-dismiss="toast" aria-label="Close" onclick="handleClose()">
-    <i class="fa fa-times"></i>
+    <button type="button" class="btn-close btn" data-bs-dismiss="toast" aria-label="Close" onclick="handleClose">
+    <i class="fa fa-times text-danger"></i>
     </button>
   </div>
   <div class="toast-body">
@@ -34,8 +34,12 @@ function initToast(type,message,title){
   return div;
 }
 
+
 function Toast(type,message,title){
 	const div = initToast(type,message,title);
 	toastContainer.appendChild(div);
-	
+	const btnClose = div.querySelector(".btn-close")
+	btnClose.addEventListener("click", () => {
+		toastContainer.removeChild(div);
+	})
 }

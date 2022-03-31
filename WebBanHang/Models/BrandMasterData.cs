@@ -6,20 +6,18 @@ using System.Web;
 
 namespace WebBanHang.Models
 {
-    public class CategoryMasterData
+    public class BrandMasterData
     {
         public int Id { get; set; }
         [Required]
-        [Display(Name="Tên danh mục")]
+        [Display(Name="Tên thương hiệu")]
         public string Name { get; set; }
-        [Display(Name = "Hình đại diện")]
+        [Display(Name="Hình đại diện")]
         public string Avatar { get; set; }
-        public string Slug { get; set; }
-        [Display(Name = "Hiển thị trên trang chủ")]
+        [Display(Name="Hiển thị trên trang chủ")]
         public Nullable<bool> ShowOnHomePage { get; set; }
+        public string Slug { get; set; }
         public Nullable<int> DisplayOrder { get; set; }
         public Nullable<bool> Deleted { get; set; }
-        [Display(Name = "Danh mục phổ biến")]
-        public Nullable<int> isPopular { get; set; }
     }
 }

@@ -159,7 +159,11 @@
                 <div class="row no-gutters">
                     <aside class="col-md-3">
                         <a href="@Url.Action("Detail", "Product", new {id=item.Id })" class="img-wrap">
-                            <span class="badge badge-danger"> NEW </span>
+                            @if (item.PriceDiscount != null && item.PriceDiscount > 0)
+                            {
+                                int sale = (int)(100 - (double)item.PriceDiscount * 100 / (double)item.Price);
+                                <span class="badge badge-danger"> Giảm @sale % </span>
+                            }
                             <img src="~/Content/images/items/@item.Avatar">
                         </a>
                     </aside> <!-- col.// -->
