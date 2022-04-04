@@ -1,9 +1,18 @@
-﻿@model IEnumerable<WebBanHang.Context.Product_0242>
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<WebBanHang.Context.Product_0242>
+
 
 @{
     ViewBag.Title = "Index";
 }
-
+@using (Html.BeginForm("Index", "Product", FormMethod.Get))
+{
+    <p style="margin:20px 0 20px 20px;">
+        Tìm tên sản phẩm: @Html.TextBox("SearchString",ViewBag.CurrentFilter as string)
+        <input type="submit" value="tìm kiếm" />
+    </p>
+}
 <section class="content">
     <div class="container-fluid">
         <div class="row">
@@ -21,31 +30,31 @@
                         <table id="example2" class="table table-bordered table-hover">
                             <tr>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.Name)
+                                    @Html.DisplayNameFor(model => model.FirstOrDefault().Name)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.Avatar)
+                                    @Html.DisplayNameFor(model => model.FirstOrDefault().Avatar)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.CategoryId)
+                                    @Html.DisplayNameFor(model => model.FirstOrDefault().CategoryId)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.BrandId)
+                                    @Html.DisplayNameFor(model => model.FirstOrDefault().BrandId)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.FullDescription)
+                                    @Html.DisplayNameFor(model => model.FirstOrDefault().FullDescription)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.Price)
+                                    @Html.DisplayNameFor(model => model.FirstOrDefault().Price)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.PriceDiscount)
+                                    @Html.DisplayNameFor(model => model.FirstOrDefault().PriceDiscount)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.Slug)
+                                    @Html.DisplayNameFor(model => model.FirstOrDefault().Slug)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.TypeId)
+                                    @Html.DisplayNameFor(model => model.FirstOrDefault().TypeId)
                                 </th>
                                 <th></th>
                             </tr>
@@ -95,8 +104,15 @@
                                 </tr>
                             }
                         </table>
+                        Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+                        @Html.PagedListPager(Model,page => Url.Action("Index", 
+                       new { page,currentFilter = ViewBag.CurrentFilter }))
                     </div>
                     //
                     <!-- /.card-body -->
+                    <a href="@Url.Action("Index","Product")">
+                        Quay lại danh sách
+                    </a>
                 </div>
-            
+
+
