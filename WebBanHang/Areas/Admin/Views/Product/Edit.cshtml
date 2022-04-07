@@ -34,7 +34,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.CategoryId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.CategoryId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownListFor(model => model.CategoryId, ViewBag.ListCategory as SelectList, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -42,7 +42,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.BrandId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.BrandId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownListFor(model => model.BrandId, ViewBag.ListBrand as SelectList, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.BrandId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -50,7 +50,10 @@
         <div class="form-group">
             @Html.LabelFor(model => model.FullDescription, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.FullDescription, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.TextAreaFor(model => model.FullDescription, new { htmlAttributes = new { @class = "form-control", @id = "FullDescription" } })
+                <script type="text/javascript" lang="javascript">
+                    CKEDITOR.replace("FullDescription");
+                </script>
                 @Html.ValidationMessageFor(model => model.FullDescription, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -82,7 +85,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.TypeId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.TypeId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownListFor(model => model.TypeId, ViewBag.ProductType as SelectList, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.TypeId, "", new { @class = "text-danger" })
             </div>
         </div>

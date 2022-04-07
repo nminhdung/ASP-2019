@@ -26,24 +26,28 @@ namespace WebBanHang.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Create(Category_0242 objCategory)
         {
-            try
+            if (ModelState.IsValid)
             {
-                if (objCategory.ImageUpload != null)
+                try
                 {
-                    string fileName = Path.GetFileNameWithoutExtension(objCategory.ImageUpload.FileName);
-                    string extension = Path.GetExtension(objCategory.ImageUpload.FileName);
-                    fileName = fileName + "_" + long.Parse(DateTime.Now.ToString("yyyyMMddhhmmss")) + extension;
-                    objCategory.Avatar = fileName;
-                    objCategory.ImageUpload.SaveAs(Path.Combine(Server.MapPath("~/Content/images/"), fileName));
+                    if (objCategory.ImageUpload != null)
+                    {
+                        string fileName = Path.GetFileNameWithoutExtension(objCategory.ImageUpload.FileName);
+                        string extension = Path.GetExtension(objCategory.ImageUpload.FileName);
+                        fileName = fileName + "_" + long.Parse(DateTime.Now.ToString("yyyyMMddhhmmss")) + extension;
+                        objCategory.Avatar = fileName;
+                        objCategory.ImageUpload.SaveAs(Path.Combine(Server.MapPath("~/Content/images/"), fileName));
+                    }
+                    webBanHangASP.Category_0242.Add(objCategory);
+                    webBanHangASP.SaveChanges();
+                    return RedirectToAction("Index");
                 }
-                webBanHangASP.Category_0242.Add(objCategory);
-                webBanHangASP.SaveChanges();
-                return RedirectToAction("Index");
+                catch (Exception)
+                {
+                    return RedirectToAction("Create");
+                }
             }
-            catch (Exception)
-            {
-                return RedirectToAction("Index");
-            }
+            return View(objCategory);
         }
         [HttpGet]
         public ActionResult Details(int id)

@@ -20,9 +20,9 @@ function initToast(type,message,title){
 	   handleClose();
 	},3000)
 	div.innerHTML=`
-   <div class="toast-header">
+   <div class="toast-header d-flex align-items-center">
     <i class="fas fa-bell mr-3 text-info"></i>
-    <strong class="me-auto">${title != "" ? title : "Thông báo:"}</strong>
+    <strong class="me-auto flex-fill">${title != "" ? title : "Thông báo:"}</strong>
     <small></small>
     <button type="button" class="btn-close btn" data-bs-dismiss="toast" aria-label="Close" onclick="handleClose">
     <i class="fa fa-times text-danger"></i>

@@ -27,24 +27,27 @@ namespace WebBanHang.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Create(Brand_0242 objBrand)
         {
-            try
-            {
-                if (objBrand.ImageUpload != null)
+            if (ModelState.IsValid) {
+                try
                 {
-                    string fileName = Path.GetFileNameWithoutExtension(objBrand.ImageUpload.FileName);
-                    string extension = Path.GetExtension(objBrand.ImageUpload.FileName);
-                    fileName = fileName + "_" + long.Parse(DateTime.Now.ToString("yyyyMMddhhmmss")) + extension;
-                    objBrand.Avatar = fileName;
-                    objBrand.ImageUpload.SaveAs(Path.Combine(Server.MapPath("~/Content/images/"), fileName));
+                    if (objBrand.ImageUpload != null)
+                    {
+                        string fileName = Path.GetFileNameWithoutExtension(objBrand.ImageUpload.FileName);
+                        string extension = Path.GetExtension(objBrand.ImageUpload.FileName);
+                        fileName = fileName + "_" + long.Parse(DateTime.Now.ToString("yyyyMMddhhmmss")) + extension;
+                        objBrand.Avatar = fileName;
+                        objBrand.ImageUpload.SaveAs(Path.Combine(Server.MapPath("~/Content/images/"), fileName));
+                    }
+                    webBanHangASP.Brand_0242.Add(objBrand);
+                    webBanHangASP.SaveChanges();
+                    return RedirectToAction("Index");
                 }
-                webBanHangASP.Brand_0242.Add(objBrand);
-                webBanHangASP.SaveChanges();
-                return RedirectToAction("Index");
+                catch (Exception)
+                {
+                    return RedirectToAction("Create");
+                }
             }
-            catch (Exception)
-            {
-                return RedirectToAction("Index");
-            }
+            return View(objBrand);
         }
         [HttpGet]
         public ActionResult Details(int id)

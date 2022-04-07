@@ -29,6 +29,7 @@
 
 </head>
 <body>
+    <script src="~/Scripts/js/index.js"></script>
     <b class="screen-overlay"></b>
 
     <header class="section-header">
@@ -79,7 +80,7 @@
 
                                             @if (Session["IsAdmin"] != null && Session["IsAdmin"].Equals(true))
                                             {
-                                                <a href="/Admin" class="dropdown-item d-flex ">
+                                                <a href="/Admin/Home" class="dropdown-item d-flex ">
                                                     <i class="fa fa-user mr-3"></i>
                                                     <small class=""> Trang quản trị</small>
                                                 </a>
@@ -90,7 +91,7 @@
                                                 <small class="">Đơn hàng</small>
                                             </a>
 
-                                            <a href="@Url.Action("Logout","User")" class="dropdown-item d-flex  ">
+                                            <a href="@Url.Action("Logout", "User")" class="dropdown-item d-flex  ">
                                                 <i class="fas fa-sign-out-alt mr-3"></i>
                                                 <small class=""> Đăng xuất </small>
                                             </a>
@@ -103,7 +104,7 @@
                                 else
                                 {
                                     <div class="widget-header mr-3">
-                                        <a href="@Url.Action("Login","User")" class="widget-view">
+                                        <a href="@Url.Action("Login", "User")" class="widget-view">
                                             <div class="icon-area">
                                                 <i class="fa fa-user"></i>
 
@@ -112,7 +113,7 @@
                                         </a>
                                     </div>
                                     <div class="widget-header mr-3">
-                                        <a href="@Url.Action("Register","User")" class="widget-view">
+                                        <a href="@Url.Action("Register", "User")" class="widget-view">
                                             <div class="icon-area">
                                                 <i class="fa fa-user"></i>
 
@@ -121,6 +122,9 @@
                                         </a>
                                     </div>
                                 }
+
+
+
                                 </a>
                             </div>
                             <div class="widget-header mr-3">
@@ -137,6 +141,15 @@
                                 <a href="/Cart/ShoppingCart" class="widget-view">
                                     <div class="icon-area">
                                         <i class="fa fa-shopping-cart"></i>
+                                        @if (Session["count"] != null)
+                                        {
+                                            <span class="notify" id="CartCount">@Session["count"] </span>
+                                        }
+                                        else
+                                        {
+                                            <span class="notify" id="CartCount">0</span>
+                                        }
+
                                     </div>
                                     <small class="text"> Giỏ hàng </small>
                                 </a>
@@ -283,16 +296,18 @@
         </div><!-- //container -->
     </footer>
     <script src="~/Scripts/ckeditor/ckeditor.js"></script>
-    <script src="~/Scripts/js/index.js"></script>
+
     @if (TempData["msg"] != null)
     {
         <script>Toast("", '@TempData["msg"]',"")</script>
     }
-    
+
 
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+
 </body>
+
 </html>

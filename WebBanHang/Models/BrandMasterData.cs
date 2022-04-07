@@ -9,7 +9,7 @@ namespace WebBanHang.Models
     public class BrandMasterData
     {
         public int Id { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Vui lòng nhập tên thương hiệu")]
         [Display(Name="Tên thương hiệu")]
         public string Name { get; set; }
         [Display(Name="Hình đại diện")]

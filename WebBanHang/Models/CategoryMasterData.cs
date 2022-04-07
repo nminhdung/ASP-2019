@@ -9,7 +9,7 @@ namespace WebBanHang.Models
     public class CategoryMasterData
     {
         public int Id { get; set; }
-        [Required]
+        [Required(ErrorMessage ="Vui lòng nhập tên danh mục")]
         [Display(Name="Tên danh mục")]
         public string Name { get; set; }
         [Display(Name = "Hình đại diện")]
