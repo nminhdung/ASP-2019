@@ -12,13 +12,11 @@ namespace WebBanHang.Context
     using System;
     using System.Collections.Generic;
     
-    public partial class Order_0242
+    public partial class OrderDetail_0242
     {
         public int Id { get; set; }
-        public string Name { get; set; }
-        public Nullable<double> Price { get; set; }
-        public Nullable<bool> Status { get; set; }
-        public Nullable<System.DateTime> CreatedOnUtc { get; set; }
-        public Nullable<int> UserId { get; set; }
+        public int OrderId { get; set; }
+        public int ProductId { get; set; }
+        public int Quantity { get; set; }
     }
 }

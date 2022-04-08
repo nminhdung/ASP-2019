@@ -30,5 +30,6 @@ namespace WebBanHang.Context
         public DbSet<Order_0242> Order_0242 { get; set; }
         public DbSet<Product_0242> Product_0242 { get; set; }
         public DbSet<User_0242> User_0242 { get; set; }
+        public DbSet<OrderDetail_0242> OrderDetail_0242 { get; set; }
     }
 }
