@@ -26,4 +26,14 @@ namespace WebBanHang.Context
         [NotMapped]
         public System.Web.HttpPostedFileBase ImageUpload { get; set; }
     }
+    [MetadataType(typeof(UserMasterData))]
+    public partial class User_0242
+    {
+
+    }
+    [MetadataType(typeof(OrderMasterData))]
+    public partial class Order_0242
+    {
+
+    }
 }

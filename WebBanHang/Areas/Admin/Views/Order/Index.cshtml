@@ -1,0 +1,87 @@
+﻿@model IEnumerable<WebBanHang.Context.Order_0242>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title" style="margin-right:20px;">Tất cả đơn hàng</h3>
+                        <p>
+                            @Html.ActionLink("Thêm đơn hàng", "Create")
+                        </p>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table class="table">
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Name)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Price)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Status)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.CreatedOnUtc)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.UserId)
+                                </th>
+                                <th></th>
+                            </tr>
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Price)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Status)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.CreatedOnUtc)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.UserId)
+                                    </td>
+                                    <td>
+                                        <a href="@Url.Action("Edit", "Order", new { id = item.Id })" style="display:flex;align-items:center;">
+                                            <i class="fas fa-edit" style="margin-right:2px;color:green"></i> Edit|
+                                        </a>
+                                        <a href="@Url.Action("Details", "Order", new { id = item.Id })" style="display: flex;align-items: center;">
+                                            <i class="fas fa-info" style="margin-right:2px;"></i> Details|
+                                        </a>
+                                        <a href="@Url.Action("Delete", "Order", new { id = item.Id })" style="display: flex;align-items: center;">
+                                            <i class="fas fa-trash" style="margin-right:2px;color:red;"></i> Delete
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+
+                        </table>
+
+
+                        @*Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+         @Html.PagedListPager(Model, page => Url.Action("Index",
+        new { page, currentFilter = ViewBag.CurrentFilter }))*@
+                    </div>
+                    
+                    <!-- /.card-body -->
+                    <a style="margin-left:20px;"href="@Url.Action("Index","Order")">
+                        Quay lại danh sách
+                    </a>
+                </div>
+              

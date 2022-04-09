@@ -43,3 +43,4 @@ function Toast(type,message,title){
 		toastContainer.removeChild(div);
 	})
 }
+
