@@ -1,9 +1,45 @@
-﻿@model IEnumerable<WebBanHang.Context.Category_0242>
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<WebBanHang.Context.Category_0242>
 
 @{
     ViewBag.Title = "Index";
 }
+<style>
+    .ul.pagination {
+        display: inline-block;
+        padding: 0;
+        margin: 0;
+    }
 
+    ul.pagination li {
+        display: inline;
+    }
+
+        ul.pagination li a {
+            color: black;
+            float: left;
+            padding: 8px 16px;
+            text-decoration: none;
+            transition: background-color .3s;
+        }
+
+            ul.pagination li a.active {
+                background-color: #4CAF50;
+                color: white;
+            }
+
+            ul.pagination li a:hover:not(.active) {
+                background-color: #ddd;
+            }
+</style>
+@using (Html.BeginForm("Index", "Category", FormMethod.Get))
+{
+    <p style="margin:20px 0 20px 20px;">
+        Tìm tên danh mục sản phẩm: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="tìm kiếm" />
+    </p>
+}
 <section class="content">
     <div class="container-fluid">
         <div class="row">
@@ -19,28 +55,28 @@
                     <div class="card-body">
 
 
-                        <table class="table">
+                        <table class="table" id="bodyCategory">
                             <tr>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.Name)
+                                    @Html.DisplayNameFor(model => model.FirstOrDefault().Name)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.Avatar)
+                                    @Html.DisplayNameFor(model => model.FirstOrDefault().Avatar)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.Slug)
+                                    @Html.DisplayNameFor(model => model.FirstOrDefault().Slug)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.ShowOnHomePage)
+                                    @Html.DisplayNameFor(model => model.FirstOrDefault().ShowOnHomePage)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.DisplayOrder)
+                                    @Html.DisplayNameFor(model => model.FirstOrDefault().DisplayOrder)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.Deleted)
+                                    @Html.DisplayNameFor(model => model.FirstOrDefault().Deleted)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.isPopular)
+                                    @Html.DisplayNameFor(model => model.FirstOrDefault().isPopular)
                                 </th>
                                 <th></th>
                             </tr>
@@ -85,8 +121,13 @@
                             }
 
                         </table>
+                        Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+                        @Html.PagedListPager(Model, page => Url.Action("Index",
+                       new { page, currentFilter = ViewBag.CurrentFilter }),
+                        PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions() { HttpMethod = "GET", UpdateTargetId = "bodyCategory" })
+                       )
                     </div>
                     //
                     <!-- /.card-body -->
                 </div>
-               
+

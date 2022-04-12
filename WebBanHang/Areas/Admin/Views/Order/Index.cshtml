@@ -1,4 +1,6 @@
-﻿@model IEnumerable<WebBanHang.Context.Order_0242>
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<WebBanHang.Context.Order_0242>
 
 @{
     ViewBag.Title = "Index";
@@ -6,6 +8,13 @@
 
 
 
+@using (Html.BeginForm("Index", "Category", FormMethod.Get))
+{
+    <p style="margin:20px 0 20px 20px;">
+        Tìm tên đơn hàng: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="tìm kiếm" />
+    </p>
+}
 <section class="content">
     <div class="container-fluid">
         <div class="row">
@@ -18,23 +27,23 @@
                         </p>
                     </div>
                     <!-- /.card-header -->
-                    <div class="card-body">
+                    <div class="card-body" id="bodyOrder">
                         <table class="table">
                             <tr>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.Name)
+                                    @Html.DisplayNameFor(model => model.FirstOrDefault().Name)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.Price)
+                                    @Html.DisplayNameFor(model => model.FirstOrDefault().Price)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.Status)
+                                    @Html.DisplayNameFor(model => model.FirstOrDefault().Status)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.CreatedOnUtc)
+                                    @Html.DisplayNameFor(model => model.FirstOrDefault().CreatedOnUtc)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.UserId)
+                                    @Html.DisplayNameFor(model => model.FirstOrDefault().UserId)
                                 </th>
                                 <th></th>
                             </tr>
@@ -73,15 +82,15 @@
 
                         </table>
 
-
-                        @*Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-         @Html.PagedListPager(Model, page => Url.Action("Index",
-        new { page, currentFilter = ViewBag.CurrentFilter }))*@
+                        Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+                        @Html.PagedListPager(Model, page => Url.Action("Index",
+                       new { page, currentFilter = ViewBag.CurrentFilter }),
+                        PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions() { HttpMethod = "GET", UpdateTargetId = "bodyOrder" })
+                       )
                     </div>
-                    
+
                     <!-- /.card-body -->
-                    <a style="margin-left:20px;"href="@Url.Action("Index","Order")">
+                    <a style="margin-left:20px;" href="@Url.Action("Index","Order")">
                         Quay lại danh sách
                     </a>
                 </div>
-              

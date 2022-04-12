@@ -80,7 +80,7 @@
 
 <header class="mb-3">
     <div class="form-inline">
-        <strong class="mr-md-auto">32 Items found </strong>
+        <strong class="mr-md-auto">@Model.ListProductBrand.Count sản phẩm đã tìm thấy</strong>
         <select class="mr-2 form-control">
             <option>Latest items</option>
             <option>Trending</option>
@@ -154,7 +154,9 @@
     <ul class="pagination-2">
         Trang @(Model.ListProductBrand.PageCount < Model.ListProductBrand.PageNumber ? 0 : Model.ListProductBrand.PageNumber) of @Model.ListProductBrand.PageCount
         @Html.PagedListPager(Model.ListProductBrand, page => Url.Action("ProductBrand",
-       new { pageNumber = page, currentFilter = ViewBag.CurrentFilter, view = 1 }))
+       new { pageNumber = page, currentFilter = ViewBag.CurrentFilter, view = 1 }),
+       PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions() { HttpMethod = "GET", UpdateTargetId = "listProductBrand" })
+       )
     </ul>
 </nav>
 

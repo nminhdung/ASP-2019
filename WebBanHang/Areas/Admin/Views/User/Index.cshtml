@@ -1,14 +1,46 @@
-﻿@model IEnumerable<WebBanHang.Context.User_0242>
-
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<WebBanHang.Context.User_0242>
 @{
     ViewBag.Title = "Index";
 }
 
-<
+<style>
+    .ul.pagination {
+        display: inline-block;
+        padding: 0;
+        margin: 0;
+    }
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+    ul.pagination li {
+        display: inline;
+    }
+
+        ul.pagination li a {
+            color: black;
+            float: left;
+            padding: 8px 16px;
+            text-decoration: none;
+            transition: background-color .3s;
+        }
+
+            ul.pagination li a.active {
+                background-color: #4CAF50;
+                color: white;
+            }
+
+            ul.pagination li a:hover:not(.active) {
+                background-color: #ddd;
+            }
+</style>
+@using (Html.BeginForm("Index", "User", FormMethod.Get))
+{
+    <p style="margin:20px 0 20px 20px;">
+        Tìm tên người dùng: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="tìm kiếm" />
+    </p>
+}
+
 <section class="content">
     <div class="container-fluid">
         <div class="row">
@@ -21,23 +53,23 @@
                         </p>
                     </div>
                     <!-- /.card-header -->
-                    <div class="card-body">
+                    <div class="card-body" id="bodyUser">
                         <table class="table">
                             <tr>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.FirstName)
+                                    @Html.DisplayNameFor(model => model.FirstOrDefault().FirstName)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.LastName)
+                                    @Html.DisplayNameFor(model => model.FirstOrDefault().LastName)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.Email)
+                                    @Html.DisplayNameFor(model => model.FirstOrDefault().Email)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.Password)
+                                    @Html.DisplayNameFor(model => model.FirstOrDefault().Password)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.IsAdmin)
+                                    @Html.DisplayNameFor(model => model.FirstOrDefault().IsAdmin)
                                 </th>
                                 <th></th>
                             </tr>
@@ -70,10 +102,15 @@
                                         <a href="@Url.Action("Delete", "User", new { id = item.Id })" style="display: flex;align-items: center;">
                                             <i class="fas fa-trash" style="margin-right:2px;color:red;"></i> Delete
                                         </a>
-</tr>
+                                </tr>
                             }
 
                         </table>
+                        Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+                        @Html.PagedListPager(Model, page => Url.Action("Index",
+                       new { page, currentFilter = ViewBag.CurrentFilter }),
+                        PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions() { HttpMethod = "GET", UpdateTargetId = "bodyUser" })
+                       )
                     </div>
                     //
                     <!-- /.card-body -->

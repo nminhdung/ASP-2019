@@ -10,20 +10,13 @@
             @foreach (var item in @Model.ListBrand)
             {
                 <div class="col-md-3">
-                    <div class="card card-category">
+                    <div class="card card-category" style="min-height:auto;">
                         <a href="@Url.Action("ProductBrand", "Brand", new {id=item.Id })" class="img-wrap" style="background: #dee4ff;width:100%;">
                             <img src="~/Content/images/brand/@item.Avatar" />
                            
                         </a>
                         <div class="card-body">
                             <h4 class="card-title"><a href="@Url.Action("ProductBrand", "Brand", new { id = item.Id })">@item.Name</a></h4>
-                            <ul class="list-menu">
-                                <li><a href="">@item.Name</a></li>
-                                <li><a href="">@item.Name</a></li>
-                                <li><a href="">@item.Name</a></li>
-                                <li><a href="">@item.Name</a></li>
-                                <li><a href="">@item.Name</a></li>
-                            </ul>
                         </div>
                     </div>
                 </div> <!-- col.// -->

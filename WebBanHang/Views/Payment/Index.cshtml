@@ -2,9 +2,30 @@
 @{
     ViewBag.Title = "Index";
 }
+<style>
+    .payment-container{
+     text-align:center;
+     margin:32px 0 ;
+    }
+    .payment-heading{
+        display:flex;
+        justify-content:center;
+        align-items:center;
+    }
+    .payment-icon{
+        font-size:22px;
+        color:green;
+        margin-right:4px;
+    }
+</style>
+<div class="payment-container">
+    <div class="payment-heading">
+        <i class="fas fa-check-circle payment-icon"></i>
+    <h2>Thanh toán thành công</h2>
+    </div>
+    <p>
+        <a href="@Url.Action("Index","Home")">Tiếp tục mua hàng</a>
+    </p>
+</div>
 
-<h2>Thanh toán thành công</h2>
-<p>
-    <a href="@Url.Action("Index","Home")">Tiếp tục mua hàng</a>
-</p>
 

@@ -147,10 +147,11 @@
     }
 </div>
 <nav class="mb-4" aria-label="Page navigation sample">
-    <ul class="pagination-2">
+    <ul class="pagination">
         Trang @(Model.ListProductCategory.PageCount < Model.ListProductCategory.PageNumber ? 0 : Model.ListProductCategory.PageNumber) of @Model.ListProductCategory.PageCount
         @Html.PagedListPager(Model.ListProductCategory, page => Url.Action("CategoryProduct",
-       new { pageNumber = page, currentFilter = ViewBag.CurrentFilter,view=1 }))
+       new { pageNumber = page, currentFilter = ViewBag.CurrentFilter, view = 1 }),
+       PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions() { HttpMethod = "GET", UpdateTargetId = "listProduct" }))
     </ul>
 </nav>
 

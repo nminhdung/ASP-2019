@@ -1780,25 +1780,4 @@ html[dir='rtl'] .itemside .info {
 }
 /*# sourceMappingURL=ui.css.map */
 
-/*pagination*/
-.pagination {
-    margin-top: 8px;
-    
-}
 
-    .pagination li a { 
-        display: inline-block ;
-        padding: 8px 12px;
-        font-size: 16px;
-        transition: all 0.3s linear;
-    }
-
-        .pagination li a:hover {
-            color: black;
-            background: #3ec7f0;
-        }
-
-    .pagination li.active > a {
-        background: #3ec7f0;
-        color: white;
-    }

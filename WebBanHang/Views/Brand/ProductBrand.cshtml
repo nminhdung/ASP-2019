@@ -6,16 +6,16 @@
 <!-- ========================= SECTION CONTENT ========================= -->
 <section class="section-content padding-y">
     <div class="container">
-
-        @if (Model.view == 0)
-        {
-            @RenderPage("~/Views/Brand/ProductBrandList.cshtml");
-        }
-        else
-        {
-            @RenderPage("~/Views/Brand/ProductBrandGrid.cshtml");
-        }
-
+        <div id="listProductBrand">
+            @if (Model.view == 0)
+            {
+                @RenderPage("~/Views/Brand/ProductBrandList.cshtml");
+            }
+            else
+            {
+                @RenderPage("~/Views/Brand/ProductBrandGrid.cshtml");
+            }
+        </div>
     </div>
 </section>
 <!-- ========================= SECTION CONTENT END// ========================= -->

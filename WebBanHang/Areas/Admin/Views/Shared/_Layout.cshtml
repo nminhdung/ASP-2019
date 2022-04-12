@@ -28,6 +28,7 @@
     <!-- summernote -->
     <link rel="stylesheet" href="~/Content/admin/plugins/summernote/summernote-bs4.min.css">
     <link href="~/Content/admin/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.css" rel="stylesheet" />
+    <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
@@ -238,7 +239,13 @@
                                         <p>Tất cả thương hiệu</p>
                                     </a>
                                 </li>
-                        </li>
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Index","Order")" class="nav-link ">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Tất cả đơn hàng</p>
+                                    </a>
+                                </li>
+</li>
                         <li class="nav-item">
                             <a href="@Url.Action("Index","User")" class="nav-link ">
                                 <i class="far fa-circle nav-icon"></i>

@@ -19,7 +19,7 @@ namespace WebBanHang.Controllers
             objCategory.ListCategory = webBanHangASP.Category_0242.ToList();
             return View(objCategory);
         }
-        public ActionResult CategoryProduct(int Id=0, int view=0,int pageNumber=1,int limit=5)
+        public ActionResult CategoryProduct(int Id=0, int view=0,int pageNumber=1,int limit=8)
         {
             WebBanHangASPEntities webBanHangASP = new WebBanHangASPEntities();
             

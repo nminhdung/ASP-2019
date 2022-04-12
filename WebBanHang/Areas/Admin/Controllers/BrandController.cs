@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PagedList;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -15,10 +16,33 @@ namespace WebBanHang.Areas.Admin.Controllers
         // GET: Admin/Brand
         // GET: Admin/Category
         WebBanHangASPEntities webBanHangASP = new WebBanHangASPEntities();
-        public ActionResult Index()
+        public ActionResult Index(string currentFilter, string SearchString, int? page)
         {
-            var lstBrand = webBanHangASP.Brand_0242.ToList();
-            return View(lstBrand);
+            var lstBrand = new List<Brand_0242>();
+
+            if (SearchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                SearchString = currentFilter;
+            }
+            if (!string.IsNullOrEmpty(SearchString))
+            {
+                lstBrand = webBanHangASP.Brand_0242.Where(n => n.Name.Contains(SearchString)).ToList();
+            }
+            else
+            {
+                lstBrand = webBanHangASP.Brand_0242.ToList();
+            }
+            ViewBag.CurrentFilter = SearchString;
+            //Số lượng item mỗi trang
+            int pageSize = 4;
+            int pageNumber = (page ?? 1);
+            //sắp xếp theo id sp, sp mới đưa lên đầu
+            lstBrand = lstBrand.OrderByDescending(n => n.Id).ToList();
+            return View(lstBrand.ToPagedList(pageNumber, pageSize));
         }
         [HttpGet]
         public ActionResult Create()

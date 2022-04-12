@@ -1,25 +1,7 @@
 ﻿@using PagedList;
 @using PagedList.Mvc;
 @model PagedList.IPagedList<WebBanHang.Context.Product_0242>
-<style>
-    .pagination {
-        margin-top:8px;
-    }
-    .pagination li a{
-        display:inline-block;
-        padding:8px 12px;
-        font-size:16px;
-        transition:all 0.3s linear;
-    }
-        .pagination li a:hover {
-            color: black;
-            background: #3ec7f0;
-        }
-        .pagination li.active > a {
-            background: #3ec7f0;
-            color: white;
-        }
-</style>
+
 
 @{
     ViewBag.Title = "Index";
@@ -43,7 +25,7 @@
                         </p>
                     </div>
                     <!-- /.card-header -->
-                    <div class="card-body">
+                    <div class="card-body" id="bodyProduct">
 
                         <table id="example2" class="table table-bordered table-hover">
                             <tr>
@@ -124,7 +106,9 @@
                         </table>
                         Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
                         @Html.PagedListPager(Model,page => Url.Action("Index", 
-                       new { page,currentFilter = ViewBag.CurrentFilter }))
+                       new { page,currentFilter = ViewBag.CurrentFilter }),
+                        PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions() { HttpMethod = "GET", UpdateTargetId = "bodyProduct" })
+                       )
                     </div>
                     //
                     <!-- /.card-body -->
