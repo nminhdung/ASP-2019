@@ -8,7 +8,7 @@
         <EntityTypeShape EntityType="WebBanHangASPModel.Brand_0242" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="WebBanHangASPModel.Category_0242" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="WebBanHangASPModel.Order_0242" Width="1.5" PointX="4.75" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="WebBanHangASPModel.Product_0242" Width="1.5" PointX="1" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBanHangASPModel.Product_0242" Width="1.5" PointX="1.5" PointY="2.5" IsExpanded="true" />
         <EntityTypeShape EntityType="WebBanHangASPModel.User_0242" Width="1.5" PointX="3.75" PointY="3.625" IsExpanded="true" />
         <EntityTypeShape EntityType="WebBanHangASPModel.OrderDetail_0242" Width="1.5" PointX="7" PointY="2" />
       </Diagram>

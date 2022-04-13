@@ -158,7 +158,7 @@
             <article class="card card-product-list">
                 <div class="row no-gutters">
                     <aside class="col-md-3">
-                        <a href="@Url.Action("Detail", "Product", new {id=item.Id})" class="img-wrap">
+                        <a href="@Url.Action("Detail", "Product", new {slug=item.Slug, id=item.Id})" class="img-wrap">
                             @if (item.PriceDiscount != null && item.PriceDiscount > 0)
                             {
                                 int sale = (int)(100 - (double)item.PriceDiscount * 100 / (double)item.Price);
@@ -169,7 +169,7 @@
                     </aside> <!-- col.// -->
                     <div class="col-md-6">
                         <div class="info-main">
-                            <a href="@Url.Action("Detail", "Product", new {id=item.Id})" class="h5 title">@item.Name</a>
+                            <a href="@Url.Action("Detail", "Product", new {slug=item.Slug, id=item.Id})" class="h5 title">@item.Name</a>
                             <div class="rating-wrap mb-2">
                                 <ul class="rating-stars">
                                     <li style="width:100%" class="stars-active">

@@ -5,6 +5,8 @@ using System.Data;
 using System.Data.Entity;
 using System.IO;
 using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using WebBanHang.Context;
@@ -59,10 +61,11 @@ namespace WebBanHang.Areas.Admin.Controllers
                     {
                         string fileName = Path.GetFileNameWithoutExtension(objCategory.ImageUpload.FileName);
                         string extension = Path.GetExtension(objCategory.ImageUpload.FileName);
-                        fileName = fileName + "_" + long.Parse(DateTime.Now.ToString("yyyyMMddhhmmss")) + extension;
+                        fileName = fileName + extension;
                         objCategory.Avatar = fileName;
                         objCategory.ImageUpload.SaveAs(Path.Combine(Server.MapPath("~/Content/images/"), fileName));
                     }
+                    objCategory.Slug = ConvertTextToSlug(objCategory.Name);
                     webBanHangASP.Category_0242.Add(objCategory);
                     webBanHangASP.SaveChanges();
                     return RedirectToAction("Index");
@@ -80,12 +83,28 @@ namespace WebBanHang.Areas.Admin.Controllers
             var objCategory = webBanHangASP.Category_0242.Where(n => n.Id == id).FirstOrDefault();
             return View(objCategory);
         }
+        //[HttpGet]
+        //public ActionResult Trash()
+        //{
+        //    var objCategory = webBanHangASP.Category_0242.Where(n => n.Deleted == true).ToList();
+        //    return View(objCategory);
+        //}
+        //[HttpPost]
+        //public ActionResult Trash(int Id)
+        //{
+        //    var objCategory = webBanHangASP.Category_0242.Where(n => n.Id == Id).FirstOrDefault();
+        //    objCategory.Deleted = true;
+        //    webBanHangASP.Category_0242.Remove(objCategory);
+           
+        //    return RedirectToAction("Index");
+        //}
         [HttpGet]
         public ActionResult Delete(int id)
         {
             var objCategory = webBanHangASP.Category_0242.Where(n => n.Id == id).FirstOrDefault();
             return View(objCategory);
         }
+
         [HttpPost]
         public ActionResult Delete(Category_0242 objCat)
         {
@@ -107,13 +126,42 @@ namespace WebBanHang.Areas.Admin.Controllers
             {
                 string fileName = Path.GetFileNameWithoutExtension(objCategory.ImageUpload.FileName);
                 string extension = Path.GetExtension(objCategory.ImageUpload.FileName);
-                fileName = fileName + "_" + long.Parse(DateTime.Now.ToString("yyyyMMddhhmmss")) + extension;
+                fileName = fileName + extension;
                 objCategory.Avatar = fileName;
                 objCategory.ImageUpload.SaveAs(Path.Combine(Server.MapPath("~/Content/images/"), fileName));
             }
+            objCategory.Slug = ConvertTextToSlug(objCategory.Name);
             webBanHangASP.Entry(objCategory).State = EntityState.Modified;
             webBanHangASP.SaveChanges();
             return View(objCategory);
+        }
+        public string convertToUnSign3(string s)
+        {
+            Regex regex = new Regex("\\p{IsCombiningDiacriticalMarks}+");
+            string temp = s.Normalize(NormalizationForm.FormD);
+            return regex.Replace(temp, String.Empty).Replace('\u0111', 'd').Replace('\u0110', 'D');
+        }
+        public string ConvertTextToSlug(string s)
+        {
+            StringBuilder sb = new StringBuilder();
+            bool wasHyphen = true;
+            foreach (char c in s)
+            {
+                if (char.IsLetterOrDigit(c))
+                {
+                    sb.Append(char.ToLower(c));
+                    wasHyphen = false;
+                }
+                else if (char.IsWhiteSpace(c) && !wasHyphen)
+                {
+                    sb.Append('-');
+                    wasHyphen = true;
+                }
+            }
+            // Avoid trailing hyphens
+            if (wasHyphen && sb.Length > 0)
+                sb.Length--;
+            return convertToUnSign3(sb.ToString());
         }
     }
 }

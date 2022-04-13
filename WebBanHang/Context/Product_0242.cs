@@ -25,5 +25,6 @@ namespace WebBanHang.Context
         public string Slug { get; set; }
         public Nullable<int> TypeId { get; set; }
         public string ShortDesc { get; set; }
+        public Nullable<bool> Delete { get; set; }
     }
 }

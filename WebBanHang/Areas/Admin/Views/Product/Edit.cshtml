@@ -4,7 +4,7 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Điểu chỉnh</h2>
+<h2>Chỉnh sửa</h2>
 
 @using (Html.BeginForm("Edit", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
@@ -27,7 +27,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Avatar, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <input type="file" name="ImageUpload" />
+                <input type="file" name="ImageUpload"/>       
             </div>
         </div>
 
@@ -95,6 +95,9 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.ShortDesc, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ShortDesc, "", new { @class = "text-danger" })
+                <script type="text/javascript" lang="javascript">
+                    CKEDITOR.replace("ShortDesc");
+                </script>
             </div>
         </div>
 

@@ -618,7 +618,7 @@ p:last-child {
 }
 
     .section-footer ul a:hover {
-        color: #883dcb;
+        color: #fa3434 !important;
     }
 
 .section-footer .logo-footer {

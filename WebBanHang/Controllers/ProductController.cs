@@ -10,7 +10,8 @@ namespace WebBanHang.Controllers
     public class ProductController : Controller
     {
         // GET: Product
-        public ActionResult Detail(int Id)
+        [Route("san-pham/chi-tiet-san-pham/{slug}/{id}")]
+        public ActionResult Detail(int Id,string slug)
         {
             WebBanHangASPEntities webBanHangASP = new WebBanHangASPEntities();
             //Lấy chi tiết sản phẩm

@@ -20,7 +20,7 @@ namespace WebBanHang.Models
         [Display(Name = "Thương hiệu")]
         public Nullable<int> BrandId { get; set; }
         [Display(Name = "Mô tả chi tiết")]
-        [Required]
+       
         public string FullDescription { get; set; }
         [Display(Name = "Giá gốc")]
         public Nullable<double> Price { get; set; }

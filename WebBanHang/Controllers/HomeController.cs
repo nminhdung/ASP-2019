@@ -13,6 +13,7 @@ namespace WebBanHang.Controllers
     public class HomeController : Controller
     {
         WebBanHangASPEntities webBanHangASP = new WebBanHangASPEntities();
+        
         public ActionResult Index()
         {
             HomeModel objHomeModel = new HomeModel();

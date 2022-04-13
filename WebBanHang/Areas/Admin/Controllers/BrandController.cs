@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.Entity;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using WebBanHang.Context;
@@ -14,7 +15,7 @@ namespace WebBanHang.Areas.Admin.Controllers
     public class BrandController : Controller
     {
         // GET: Admin/Brand
-        // GET: Admin/Category
+
         WebBanHangASPEntities webBanHangASP = new WebBanHangASPEntities();
         public ActionResult Index(string currentFilter, string SearchString, int? page)
         {
@@ -52,17 +53,19 @@ namespace WebBanHang.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Create(Brand_0242 objBrand)
         {
-            if (ModelState.IsValid) {
+            if (ModelState.IsValid)
+            {
                 try
                 {
                     if (objBrand.ImageUpload != null)
                     {
                         string fileName = Path.GetFileNameWithoutExtension(objBrand.ImageUpload.FileName);
                         string extension = Path.GetExtension(objBrand.ImageUpload.FileName);
-                        fileName = fileName + "_" + long.Parse(DateTime.Now.ToString("yyyyMMddhhmmss")) + extension;
+                        fileName = fileName + extension;
                         objBrand.Avatar = fileName;
                         objBrand.ImageUpload.SaveAs(Path.Combine(Server.MapPath("~/Content/images/"), fileName));
                     }
+                    objBrand.Slug = ConvertTextToSlug(objBrand.Name);
                     webBanHangASP.Brand_0242.Add(objBrand);
                     webBanHangASP.SaveChanges();
                     return RedirectToAction("Index");
@@ -107,13 +110,38 @@ namespace WebBanHang.Areas.Admin.Controllers
             {
                 string fileName = Path.GetFileNameWithoutExtension(objBrand.ImageUpload.FileName);
                 string extension = Path.GetExtension(objBrand.ImageUpload.FileName);
-                fileName = fileName + "_" + long.Parse(DateTime.Now.ToString("yyyyMMddhhmmss")) + extension;
+                fileName = fileName  + extension;
                 objBrand.Avatar = fileName;
                 objBrand.ImageUpload.SaveAs(Path.Combine(Server.MapPath("~/Content/images/"), fileName));
             }
+
             webBanHangASP.Entry(objBrand).State = EntityState.Modified;
             webBanHangASP.SaveChanges();
             return View(objBrand);
+        }
+
+
+        public string ConvertTextToSlug(string s)
+        {
+            StringBuilder sb = new StringBuilder();
+            bool wasHyphen = true;
+            foreach (char c in s)
+            {
+                if (char.IsLetterOrDigit(c))
+                {
+                    sb.Append(char.ToLower(c));
+                    wasHyphen = false;
+                }
+                else if (char.IsWhiteSpace(c) && !wasHyphen)
+                {
+                    sb.Append('-');
+                    wasHyphen = true;
+                }
+            }
+            // Avoid trailing hyphens
+            if (wasHyphen && sb.Length > 0)
+                sb.Length--;
+            return sb.ToString();
         }
     }
 }

@@ -120,6 +120,7 @@ namespace WebBanHang.Areas.Admin.Controllers
                 objProduct.Avatar = fileName;
                 objProduct.ImageUpload.SaveAs(Path.Combine(Server.MapPath("~/Content/images/"), fileName));
             }
+            
             webBanHangASP.Entry(objProduct).State = EntityState.Modified;
             webBanHangASP.SaveChanges();
             return View(objProduct);
@@ -156,7 +157,7 @@ namespace WebBanHang.Areas.Admin.Controllers
             DataTable dtProductType = converter.ToDataTable(lstProductType);
             ViewBag.ProductType = objCommon.ToSelectList(dtProductType, "Id", "Name");
         }
-        public static string ConvertTextToSlug(string s)
+        public  string ConvertTextToSlug(string s)
         {
             StringBuilder sb = new StringBuilder();
             bool wasHyphen = true;

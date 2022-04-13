@@ -41,9 +41,7 @@
                                 <th>
                                     @Html.DisplayNameFor(model => model.FirstOrDefault().BrandId)
                                 </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.FirstOrDefault().FullDescription)
-                                </th>
+                              
                                 <th>
                                     @Html.DisplayNameFor(model => model.FirstOrDefault().Price)
                                 </th>
@@ -64,9 +62,9 @@
                                     <td>
                                         @Html.DisplayFor(modelItem => item.Name)
                                     </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Avatar)
-                                        @*<img style="width:10em;" src="~/Content/images/items/@item.Avatar" />*@
+                                    <td class="text-center">
+                                        
+                                        <img  src="~/Content/images/items/@item.Avatar" width="60" height="60" style="object-fit:cover;"/>
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.CategoryId)
@@ -74,9 +72,7 @@
                                     <td>
                                         @Html.DisplayFor(modelItem => item.BrandId)
                                     </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.FullDescription)
-                                    </td>
+                                 
                                     <td>
                                         @Html.DisplayFor(modelItem => item.Price)
                                     </td>

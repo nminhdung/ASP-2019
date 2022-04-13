@@ -16,15 +16,15 @@
                             <ul class="menu-category">
                                 @foreach (var item in Model.ListCategory)
                                 {
-                                    <li><a href="@Url.Action("CategoryProduct","Category",new { id=item.Id })">@item.Name</a></li>
+                                    <li><a href="@Url.Action("CategoryProduct", "Category", new {Id=item.Id,pageNumber=1 })">@item.Name</a></li>
                                 }
 
 
 
-                            <li class="has-submenu">
-                                <a href="@Url.Action("CategoryProduct","Category")">Xem tất cả</a>
+                                <li class="has-submenu">
+                                    <a href="@Url.Action("CategoryProduct", "Category", new {Id=0,pageNumber=1 })">Xem tất cả</a>
 
-                            </li>
+                                </li>
                             </ul>
                         </nav>
                     </aside> <!-- col.// -->
@@ -103,11 +103,11 @@
                 {
                     <div class="col-md col-6">
                         <figure class="card-product-grid card-sm">
-                            <a href="@Url.Action("Detail","Product",new {@id=item.Id })" class="img-wrap">
+                            <a href="@Url.Action("Detail","Product",new {Slug=item.Slug,Id=item.Id })" class="img-wrap">
                                 <img src="~/Content/images/items/@item.Avatar">
                             </a>
                             <div class="text-wrap p-3">
-                                <a href="@Url.Action("Detail","Product",new {@id=item.Id })" class="title">@item.Name</a>
+                                <a href="@Url.Action("Detail","Product",new {Slug=item.Slug,Id=item.Id })" class="title">@item.Name</a>
                                 <span class="badge badge-danger"> -20% </span>
                             </div>
                         </figure>
@@ -142,7 +142,7 @@
                         @foreach (var item in @Model.ListProductBrand)
                         {
                             <li class="col-6 col-lg-3 col-md-4">
-                                <a href="@Url.Action("Detail","Product",new { id=item.Id})" class="item">
+                                <a href="@Url.Action("Detail","Product",new { Slug=item.Slug,Id=item.Id})" class="item">
                                     <div class="card-body">
                                         <h6 class="title">@item.Name</h6>
                                         <img class="img-sm float-right" src="~/Content/images/items/@item.Avatar">
@@ -181,7 +181,7 @@
                         @foreach (var item in Model.ListProductHot)
                         {
                             <li class="col-6 col-lg-3 col-md-4">
-                                <a href="@Url.Action("Detail","Product",new { id=item.Id })" class="item">
+                                <a href="@Url.Action("Detail","Product",new { Slug=item.Slug,Id=item.Id })" class="item">
                                     <div class="card-body">
                                         <h6 class="title">@item.Name  </h6>
                                         <img class="img-sm float-right" src="~/Content/images/items/@item.Avatar">
@@ -274,9 +274,9 @@
             {
                 <div class="col-xl-2 col-lg-3 col-md-4 col-6">
                     <div class="card card-sm card-product-grid">
-                        <a href="@Url.Action("Detail","Product",new { id=item.Id})" class="img-wrap"> <img src="~/Content/images/items/@item.Avatar"> </a>
+                        <a href="@Url.Action("Detail","Product",new { slug=item.Slug, Id=item.Id})" class="img-wrap"> <img src="~/Content/images/items/@item.Avatar"> </a>
                         <figcaption class="info-wrap">
-                            <a href="@Url.Action("Detail","Product",new { id=item.Id})" class="title">@item.Name</a>
+                            <a href="@Url.Action("Detail","Product",new { slug=item.Slug, Id=item.Id})" class="title">@item.Name</a>
                             <div class="price mt-1">@Convert.ToDecimal(@item.Price).ToString("#,##0") vnđ</div> <!-- price-wrap.// -->
                         </figcaption>
                     </div>
@@ -289,7 +289,7 @@
     <section class="padding-bottom">
 
         <header class="section-heading heading-line">
-            <h4 class="title-section text-uppercase">Trade services</h4>
+            <h4 class="title-section text-uppercase">Dịch vụ thương mại</h4>
         </header>
 
         <div class="row">
@@ -297,8 +297,8 @@
                 <article class="card card-post">
                     <img src="~/Content/images/posts/1.jpg" class="card-img-top">
                     <div class="card-body">
-                        <h6 class="title">Trade Assurance</h6>
-                        <p class="small text-uppercase text-muted">Order protection</p>
+                        <h6 class="title">Thanh toán an toàn</h6>
+                        <p class="small text-uppercase text-muted">Đảm bảo đơn hàng</p>
                     </div>
                 </article> <!-- card.// -->
             </div> <!-- col.// -->
@@ -306,8 +306,8 @@
                 <article class="card card-post">
                     <img src="~/Content/images/posts/2.jpg" class="card-img-top">
                     <div class="card-body">
-                        <h6 class="title">Pay anytime</h6>
-                        <p class="small text-uppercase text-muted">Finance solution</p>
+                        <h6 class="title">Thanh toán mọi lúc mọi nơi</h6>
+                        <p class="small text-uppercase text-muted">Chính sách ưu đãi</p>
                     </div>
                 </article> <!-- card.// -->
             </div> <!-- col.// -->
@@ -315,8 +315,8 @@
                 <article class="card card-post">
                     <img src="~/Content/images/posts/3.jpg" class="card-img-top">
                     <div class="card-body">
-                        <h6 class="title">Inspection solution</h6>
-                        <p class="small text-uppercase text-muted">Easy Inspection</p>
+                        <h6 class="title">Hệ thống kiểm tra</h6>
+                        <p class="small text-uppercase text-muted">Bảo mật an toàn</p>
                     </div>
                 </article> <!-- card.// -->
             </div> <!-- col.// -->
@@ -324,8 +324,8 @@
                 <article class="card card-post">
                     <img src="~/Content/images/posts/4.jpg" class="card-img-top">
                     <div class="card-body">
-                        <h6 class="title">Ocean and Air Shipping</h6>
-                        <p class="small text-uppercase text-muted">Logistic services</p>
+                        <h6 class="title">Vận chuyển nhanh chóng trong 24h</h6>
+                        <p class="small text-uppercase text-muted">Dịch vụ logistic</p>
                     </div>
                 </article> <!-- card.// -->
             </div> <!-- col.// -->
@@ -363,7 +363,7 @@
 <section class="section-subscribe padding-y-lg">
     <div class="container">
 
-        <p class="pb-2 text-center text-white">Delivering the latest product trends and industry news straight to your inbox</p>
+        <p class="pb-2 text-center text-white">Thông báo sản phẩm thịnh hành và các tin tức mới được gửi đến Email của bạn</p>
 
         <div class="row justify-content-md-center">
             <div class="col-lg-5 col-md-6">

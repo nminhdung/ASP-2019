@@ -10,12 +10,12 @@
             {
                 <div class="col-md-3">
                     <div class="card card-category" style="min-height:auto;">
-                        <a href="@Url.Action("CategoryProduct", "Category", new {id=item.Id,page=1 })" class="img-wrap" style="background: #dee4ff;width:100%;">
+                        <a href="@Url.Action("CategoryProduct", "Category", new {slug=item.Slug,Id=item.Id,pageNumber=1 })" class="img-wrap" style="background: #dee4ff;width:100%;">
                             <img src="~/Content/images/category/@item.Avatar" />
                         </a>
                         <div class="card-body">
                             <h4 class="card-title">
-                                <a href="@Url.Action("CategoryProduct", "Category", new {id=item.Id })">@item.Name</a>
+                                <a href="@Url.Action("CategoryProduct", "Category", new {slug=item.Slug,id=item.Id,pageNumber=1 })">@item.Name</a>
                             </h4>
                         </div>
                     </div>

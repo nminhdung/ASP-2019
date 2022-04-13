@@ -85,7 +85,7 @@
                                         @Html.DisplayFor(modelItem => item.Name)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.Avatar)
+                                        <img src="~/Content/images/brand/@item.Avatar" width="60" height="60" />
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.ShowOnHomePage)
@@ -100,13 +100,13 @@
                                         @Html.DisplayFor(modelItem => item.Deleted)
                                     </td>
                                     <td>
-                                        <a href="@Url.Action("Edit", "Category", new { id = item.Id })" style="display:flex;align-items:center;">
+                                        <a href="@Url.Action("Edit", "Brand", new { id = item.Id })" style="display:flex;align-items:center;">
                                             <i class="fas fa-edit" style="margin-right:2px;color:green"></i> Edit|
                                         </a>
-                                        <a href="@Url.Action("Details", "Category", new { id = item.Id })" style="display: flex;align-items: center;">
+                                        <a href="@Url.Action("Details", "Brand", new { id = item.Id })" style="display: flex;align-items: center;">
                                             <i class="fas fa-info" style="margin-right:2px;"></i> Details|
                                         </a>
-                                        <a href="@Url.Action("Delete", "Category", new { id = item.Id })" style="display: flex;align-items: center;">
+                                        <a href="@Url.Action("Delete", "Brand", new { id = item.Id })" style="display: flex;align-items: center;">
                                             <i class="fas fa-trash" style="margin-right:2px;color:red;"></i> Delete
                                         </a>
                                     </td>

@@ -12,13 +12,16 @@ namespace WebBanHang.Controllers
     public class CategoryController : Controller
     {
         // GET: Category
+        [Route("tat-ca-danh-muc")]
         public ActionResult CategoryList()
         {
+            
             WebBanHangASPEntities webBanHangASP = new WebBanHangASPEntities();
             CategoryModel objCategory = new CategoryModel();
             objCategory.ListCategory = webBanHangASP.Category_0242.ToList();
             return View(objCategory);
         }
+        //[Route("san-pham-danh-muc/{slug}/page-{pageNumber:int?}/{id:int?}")]
         public ActionResult CategoryProduct(int Id=0, int view=0,int pageNumber=1,int limit=8)
         {
             WebBanHangASPEntities webBanHangASP = new WebBanHangASPEntities();
