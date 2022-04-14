@@ -36,7 +36,7 @@ namespace WebBanHang.Areas.Admin.Controllers
             }
             else
             {
-                lstProduct = webBanHangASP.Product_0242.ToList();
+                lstProduct = webBanHangASP.Product_0242.Where(n=>n.Deleted==false).ToList();
             }
             ViewBag.CurrentFilter = SearchString;
             //Số lượng item mỗi trang
@@ -45,6 +45,28 @@ namespace WebBanHang.Areas.Admin.Controllers
             //sắp xếp theo id sp, sp mới đưa lên đầu
             lstProduct = lstProduct.OrderByDescending(n => n.Id).ToList();
             return View(lstProduct.ToPagedList(pageNumber,pageSize));
+        }
+        public ActionResult Trash()
+        {
+            var objProduct = webBanHangASP.Product_0242.Where(n => n.Deleted == true).ToList();
+            return View(objProduct);
+        }
+
+        public ActionResult DelTrash(int Id)
+        {
+            var objProduct = webBanHangASP.Product_0242.Where(n => n.Id == Id).FirstOrDefault();
+            objProduct.Deleted = true;
+            webBanHangASP.Entry(objProduct).State = EntityState.Modified;
+            webBanHangASP.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        public ActionResult Restore(int Id)
+        {
+            var objProduct = webBanHangASP.Product_0242.Where(n => n.Id == Id).FirstOrDefault();
+            objProduct.Deleted = false;
+            webBanHangASP.Entry(objProduct).State = EntityState.Modified;
+            webBanHangASP.SaveChanges();
+            return RedirectToAction("Index");
         }
         [HttpGet]
         public ActionResult Create()
@@ -112,17 +134,25 @@ namespace WebBanHang.Areas.Admin.Controllers
         public ActionResult Edit(int id, Product_0242 objProduct)
         {
             this.LoadData();
-            if (objProduct.ImageUpload != null)
+            try
             {
-                string fileName = Path.GetFileNameWithoutExtension(objProduct.ImageUpload.FileName);
-                string extension = Path.GetExtension(objProduct.ImageUpload.FileName);
-                fileName = fileName + extension;
-                objProduct.Avatar = fileName;
-                objProduct.ImageUpload.SaveAs(Path.Combine(Server.MapPath("~/Content/images/"), fileName));
+                if (objProduct.ImageUpload != null)
+                {
+                    string fileName = Path.GetFileNameWithoutExtension(objProduct.ImageUpload.FileName);
+                    string extension = Path.GetExtension(objProduct.ImageUpload.FileName);
+                    fileName = fileName + extension;
+                    objProduct.Avatar = fileName;
+                    objProduct.ImageUpload.SaveAs(Path.Combine(Server.MapPath("~/Content/images/"), fileName));
+                }
+
+                webBanHangASP.Entry(objProduct).State = EntityState.Modified;
+                webBanHangASP.SaveChanges();
+                return RedirectToAction("Index");
             }
-            
-            webBanHangASP.Entry(objProduct).State = EntityState.Modified;
-            webBanHangASP.SaveChanges();
+            catch (Exception)
+            {
+                return RedirectToAction("Edit");
+            }
             return View(objProduct);
         }
         void LoadData() {

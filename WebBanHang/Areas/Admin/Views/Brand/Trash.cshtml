@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WebBanHang.Context.Category_0242>
+﻿@model IEnumerable<WebBanHang.Context.Brand_0242>
 
 @{
     ViewBag.Title = "Trash";
@@ -6,9 +6,6 @@
 
 <h2>Trash</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
@@ -18,19 +15,16 @@
             @Html.DisplayNameFor(model => model.Avatar)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Slug)
+            @Html.DisplayNameFor(model => model.ShowOnHomePage)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ShowOnHomePage)
+            @Html.DisplayNameFor(model => model.Slug)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.DisplayOrder)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Deleted)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.isPopular)
         </th>
         <th></th>
     </tr>
@@ -44,10 +38,10 @@
             @Html.DisplayFor(modelItem => item.Avatar)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Slug)
+            @Html.DisplayFor(modelItem => item.ShowOnHomePage)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ShowOnHomePage)
+            @Html.DisplayFor(modelItem => item.Slug)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.DisplayOrder)
@@ -56,13 +50,10 @@
             @Html.DisplayFor(modelItem => item.Deleted)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.isPopular)
-        </td>
-        <td>
-            <a href="@Url.Action("Restore", "Category", new { id = item.Id })" style="display:flex;align-items:center;">
+            <a href="@Url.Action("Restore", "Brand", new { id = item.Id })" style="display:flex;align-items:center;">
                 <i class="fas fa-trash-restore" style="margin-right:2px;color:green"></i> Restore|
             </a>
-            <a href="@Url.Action("Delete", "Category",new { id=item.Id })" style="display: flex;align-items: center;">
+            <a href="@Url.Action("Delete", "Brand",new { id=item.Id })" style="display: flex;align-items: center;">
                 <i class="fas fa-trash" style="margin-right:2px;color:red;"></i> Delete
             </a>
         </td>

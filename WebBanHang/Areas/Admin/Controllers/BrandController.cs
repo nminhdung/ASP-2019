@@ -35,7 +35,7 @@ namespace WebBanHang.Areas.Admin.Controllers
             }
             else
             {
-                lstBrand = webBanHangASP.Brand_0242.ToList();
+                lstBrand = webBanHangASP.Brand_0242.Where(n=>n.Deleted==false).ToList();
             }
             ViewBag.CurrentFilter = SearchString;
             //Số lượng item mỗi trang
@@ -82,6 +82,28 @@ namespace WebBanHang.Areas.Admin.Controllers
         {
             var objBrand = webBanHangASP.Brand_0242.Where(n => n.Id == id).FirstOrDefault();
             return View(objBrand);
+        }
+        public ActionResult Trash()
+        {
+            var objBrand = webBanHangASP.Brand_0242.Where(n => n.Deleted == true).ToList();
+            return View(objBrand);
+        }
+
+        public ActionResult DelTrash(int Id)
+        {
+            var objBrand = webBanHangASP.Brand_0242.Where(n => n.Id == Id).FirstOrDefault();
+            objBrand.Deleted = true;
+            webBanHangASP.Entry(objBrand).State = EntityState.Modified;
+            webBanHangASP.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        public ActionResult Restore(int Id)
+        {
+            var objBrand = webBanHangASP.Brand_0242.Where(n => n.Id == Id).FirstOrDefault();
+            objBrand.Deleted = false;
+            webBanHangASP.Entry(objBrand).State = EntityState.Modified;
+            webBanHangASP.SaveChanges();
+            return RedirectToAction("Index");
         }
         [HttpGet]
         public ActionResult Delete(int id)

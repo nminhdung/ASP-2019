@@ -51,6 +51,9 @@
                         <p>
                             @Html.ActionLink("Thêm thương hiệu", "Create")
                         </p>
+                        <a href="@Url.Action("Trash", "Brand")" style="text-align:right;display: flex;align-items: center;">
+                            <i class="fas fa-trash" style="margin-right:2px;color:red;"></i> Thùng rác
+                        </a>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body" id="bodyBrand">
@@ -106,8 +109,8 @@
                                         <a href="@Url.Action("Details", "Brand", new { id = item.Id })" style="display: flex;align-items: center;">
                                             <i class="fas fa-info" style="margin-right:2px;"></i> Details|
                                         </a>
-                                        <a href="@Url.Action("Delete", "Brand", new { id = item.Id })" style="display: flex;align-items: center;">
-                                            <i class="fas fa-trash" style="margin-right:2px;color:red;"></i> Delete
+                                        <a href="@Url.Action("DelTrash", "Brand", new { id = item.Id })" style="display: flex;align-items: center;">
+                                            <i class="fas fa-trash" style="margin-right:2px;color:red;"></i> Trash
                                         </a>
                                     </td>
                                 </tr>

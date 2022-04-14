@@ -68,7 +68,7 @@
 
     </dl>
 
-    @using (Html.BeginForm(Html.BeginForm("Delete", "Category", FormMethod.Post, new { enctype = "mutilpart/form-data" })))
+    @using (Html.BeginForm("Delete", "Category", FormMethod.Post, new { enctype = "mutilpart/form-data" }))
      {
         @Html.AntiForgeryToken()
 

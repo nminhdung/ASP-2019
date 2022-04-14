@@ -65,7 +65,7 @@
           <Property Name="PriceDiscount" Type="float" />
           <Property Name="Slug" Type="nvarchar" MaxLength="50" />
           <Property Name="TypeId" Type="int" />
-          <Property Name="Delete" Type="bit" />
+          <Property Name="Deleted" Type="bit" />
         </EntityType>
         <EntityType Name="User_0242">
           <Key>
@@ -141,7 +141,7 @@
           <Property Name="Slug" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="TypeId" Type="Int32" />
           <Property Name="ShortDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Delete" Type="Boolean" />
+          <Property Name="Deleted" Type="Boolean" />
         </EntityType>
         <EntityType Name="User_0242">
           <Key>
@@ -219,7 +219,7 @@
           <EntitySetMapping Name="Product_0242">
             <EntityTypeMapping TypeName="WebBanHangASPModel.Product_0242">
               <MappingFragment StoreEntitySet="Product_0242">
-                <ScalarProperty Name="Delete" ColumnName="Delete" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Avatar" ColumnName="Avatar" />

@@ -33,5 +33,6 @@ namespace WebBanHang.Models
 
         public string ShortDesc { get; set; }
 
+        public Nullable<bool> Deleted { get; set; }
     }
 }

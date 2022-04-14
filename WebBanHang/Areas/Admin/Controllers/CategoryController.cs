@@ -35,7 +35,7 @@ namespace WebBanHang.Areas.Admin.Controllers
             }
             else
             {
-                lstCategory = webBanHangASP.Category_0242.ToList();
+                lstCategory = webBanHangASP.Category_0242.Where(n=>n.Deleted==false).ToList();
             }
             ViewBag.CurrentFilter = SearchString;
             //Số lượng item mỗi trang
@@ -83,21 +83,29 @@ namespace WebBanHang.Areas.Admin.Controllers
             var objCategory = webBanHangASP.Category_0242.Where(n => n.Id == id).FirstOrDefault();
             return View(objCategory);
         }
-        //[HttpGet]
-        //public ActionResult Trash()
-        //{
-        //    var objCategory = webBanHangASP.Category_0242.Where(n => n.Deleted == true).ToList();
-        //    return View(objCategory);
-        //}
-        //[HttpPost]
-        //public ActionResult Trash(int Id)
-        //{
-        //    var objCategory = webBanHangASP.Category_0242.Where(n => n.Id == Id).FirstOrDefault();
-        //    objCategory.Deleted = true;
-        //    webBanHangASP.Category_0242.Remove(objCategory);
-           
-        //    return RedirectToAction("Index");
-        //}
+        
+        public ActionResult Trash()
+        {
+            var objCategory = webBanHangASP.Category_0242.Where(n => n.Deleted == true).ToList();
+            return View(objCategory);
+        }
+       
+        public ActionResult DelTrash(int Id)
+        {
+            var objCategory = webBanHangASP.Category_0242.Where(n => n.Id == Id).FirstOrDefault();
+            objCategory.Deleted = true;
+            webBanHangASP.Entry(objCategory).State = EntityState.Modified;
+            webBanHangASP.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        public ActionResult Restore(int Id)
+        {
+            var objCategory = webBanHangASP.Category_0242.Where(n => n.Id == Id).FirstOrDefault();
+            objCategory.Deleted = false;
+            webBanHangASP.Entry(objCategory).State = EntityState.Modified;
+            webBanHangASP.SaveChanges();
+            return RedirectToAction("Index");
+        }
         [HttpGet]
         public ActionResult Delete(int id)
         {

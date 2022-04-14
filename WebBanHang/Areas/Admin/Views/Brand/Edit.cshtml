@@ -28,6 +28,7 @@
             @Html.LabelFor(model => model.Avatar, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <input type="file" name="ImageUpload" />
+                <input type="text" class="d-none" name="Avatar" value="@Model.Avatar" />
             </div>
         </div>
 
