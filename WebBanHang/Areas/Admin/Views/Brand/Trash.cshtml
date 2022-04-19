@@ -4,8 +4,7 @@
     ViewBag.Title = "Trash";
 }
 
-<h2>Trash</h2>
-
+<h2 class="text-center">Thùng rác</h2>
 <table class="table">
     <tr>
         <th>
@@ -50,11 +49,15 @@
             @Html.DisplayFor(modelItem => item.Deleted)
         </td>
         <td>
-            <a href="@Url.Action("Restore", "Brand", new { id = item.Id })" style="display:flex;align-items:center;">
-                <i class="fas fa-trash-restore" style="margin-right:2px;color:green"></i> Restore|
+            <a href="@Url.Action("Restore", "Brand", new { id = item.Id })"
+               style="display:inline-flex;align-items: center;padding:8px 12px;background:green;border-radius:5px;margin-left:4px;">
+                <i class="fas fa-trash-restore" style="margin-right:5px;font-size:20px; color:white;"></i>
+                <span style="color:white;">Restore</span>
             </a>
-            <a href="@Url.Action("Delete", "Brand",new { id=item.Id })" style="display: flex;align-items: center;">
-                <i class="fas fa-trash" style="margin-right:2px;color:red;"></i> Delete
+            <a href="@Url.Action("Delete", "Brand",new { id=item.Id })"
+               style="display:inline-flex;align-items: center; padding:8px 12px;background:red; border-radius:5px;margin-left:4px;">
+                <i class="fas fa-trash" style="margin-right:5px;color:white;font-size:20px;"></i>
+                <span style="color:white;">Delete</span>
             </a>
         </td>
     </tr>

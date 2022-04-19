@@ -20,5 +20,6 @@ namespace WebBanHang.Context
         public Nullable<bool> Status { get; set; }
         public Nullable<System.DateTime> CreatedOnUtc { get; set; }
         public Nullable<int> UserId { get; set; }
+        public Nullable<bool> Deleted { get; set; }
     }
 }

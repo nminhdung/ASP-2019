@@ -19,5 +19,6 @@ namespace WebBanHang.Models
         [Display(Name="Ngày tạo")]
         public Nullable<System.DateTime> CreatedOnUtc { get; set; }
         public Nullable<int> UserId { get; set; }
+        public Nullable<bool> Deleted { get; set; }
     }
 }

@@ -51,6 +51,9 @@
                         <p>
                             @Html.ActionLink("Thêm người dùng", "Create")
                         </p>
+                        <a href="@Url.Action("Trash", "User")" style="text-align:right;display: flex;align-items: center;">
+                            <i class="fas fa-trash" style="margin-right:2px;color:red;"></i> Thùng rác
+                        </a>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body" id="bodyUser">
@@ -93,14 +96,21 @@
                                         @Html.DisplayFor(modelItem => item.IsAdmin)
                                     </td>
                                     <td>
-                                        <a href="@Url.Action("Edit", "User", new { id = item.Id })" style="display:flex;align-items:center;">
-                                            <i class="fas fa-edit" style="margin-right:2px;color:green"></i> Edit|
+                                        <a href="@Url.Action("Edit", "User", new { id = item.Id })"
+                                           style="display:inline-flex;align-items: center;padding:8px 12px;background:green;border-radius:5px;margin-left:4px;">
+                                            <i class="fas fa-edit" style="margin-right:5px;font-size:20px; color:white;"></i>
+                                            <span style="color:white;">Edit</span>
                                         </a>
-                                        <a href="@Url.Action("Details", "User", new { id = item.Id })" style="display: flex;align-items: center;">
-                                            <i class="fas fa-info" style="margin-right:2px;"></i> Details|
+
+                                        <a href="@Url.Action("Details", "User", new { id = item.Id })"
+                                           style="display:inline-flex;align-items: center;padding:8px 12px;background:blue;border-radius:5px;margin-left:4px;">
+                                            <i class="fas fa-info" style="margin-right:5px;font-size:20px; color:white;"></i>
+                                            <span style="color:white;">Details</span>
                                         </a>
-                                        <a href="@Url.Action("Delete", "User", new { id = item.Id })" style="display: flex;align-items: center;">
-                                            <i class="fas fa-trash" style="margin-right:2px;color:red;"></i> Delete
+                                        <a href="@Url.Action("DelTrash", "User",new { id=item.Id })"
+                                           style="display:inline-flex;align-items: center; padding:8px 12px;background:red; border-radius:5px;margin-left:4px;">
+                                            <i class="fas fa-trash" style="margin-right:5px;color:white;font-size:20px;"></i>
+                                            <span style="color:white;">Trash</span>
                                         </a>
                                 </tr>
                             }

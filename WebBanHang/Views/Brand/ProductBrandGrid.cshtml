@@ -112,7 +112,7 @@
                     <img src="~/Content/images/items/@item.Avatar">
                 </div> <!-- img-wrap.// -->
                 <figcaption class="info-wrap">
-                    <a href="@Url.Action("Detail", "Product", new {id=item.Id })" class="title mb-2">@item.Name</a>
+                    <a href="@Url.Action("Detail", "Product", new {Slug=item.Slug,Id=item.Id })" class="title mb-2">@item.Name</a>
                     <div class="price-wrap">
                         <span class="price">@Convert.ToDecimal(@item.Price).ToString("#,##0") Vnđ</span>
                         <small class="text-muted">/per item</small>

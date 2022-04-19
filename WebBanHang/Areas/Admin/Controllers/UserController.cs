@@ -32,7 +32,7 @@ namespace WebBanHang.Areas.Admin.Controllers
             }
             else
             {
-                lstUser = webBanHangASP.User_0242.ToList();
+                lstUser = webBanHangASP.User_0242.Where(n=>n.Deleted==false).ToList();
             }
             ViewBag.CurrentFilter = SearchString;
             //Số lượng item mỗi trang
@@ -71,6 +71,28 @@ namespace WebBanHang.Areas.Admin.Controllers
         {
             var objUser = webBanHangASP.User_0242.Where(n => n.Id == Id).FirstOrDefault();
             return View(objUser);
+        }
+        public ActionResult Trash()
+        {
+            var objUser = webBanHangASP.User_0242.Where(n => n.Deleted == true).ToList();
+            return View(objUser);
+        }
+
+        public ActionResult DelTrash(int Id)
+        {
+            var objUser = webBanHangASP.User_0242.Where(n => n.Id == Id).FirstOrDefault();
+            objUser.Deleted = true;
+            webBanHangASP.Entry(objUser).State = EntityState.Modified;
+            webBanHangASP.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        public ActionResult Restore(int Id)
+        {
+            var objUser = webBanHangASP.User_0242.Where(n => n.Id == Id).FirstOrDefault();
+            objUser.Deleted = false;
+            webBanHangASP.Entry(objUser).State = EntityState.Modified;
+            webBanHangASP.SaveChanges();
+            return RedirectToAction("Index");
         }
         [HttpGet]
         public ActionResult Delete(int Id)

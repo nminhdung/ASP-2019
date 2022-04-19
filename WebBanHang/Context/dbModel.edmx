@@ -40,6 +40,7 @@
           <Property Name="Price" Type="float" />
           <Property Name="Status" Type="bit" />
           <Property Name="CreatedOnUtc" Type="datetime" />
+          <Property Name="Deleted" Type="bit" />
         </EntityType>
         <EntityType Name="OrderDetail_0242">
           <Key>
@@ -77,6 +78,7 @@
           <Property Name="Email" Type="varchar" MaxLength="100" />
           <Property Name="Password" Type="varchar" MaxLength="100" />
           <Property Name="IsAdmin" Type="bit" />
+          <Property Name="Deleted" Type="bit" />
         </EntityType>
         <EntityContainer Name="WebBanHangASPModelStoreContainer">
           <EntitySet Name="Brand_0242" EntityType="Self.Brand_0242" Schema="dbo" store:Type="Tables" />
@@ -125,6 +127,7 @@
           <Property Name="Status" Type="Boolean" />
           <Property Name="CreatedOnUtc" Type="DateTime" Precision="3" />
           <Property Name="UserId" Type="Int32" />
+          <Property Name="Deleted" Type="Boolean" />
         </EntityType>
         <EntityType Name="Product_0242">
           <Key>
@@ -153,6 +156,7 @@
           <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="IsAdmin" Type="Boolean" />
+          <Property Name="Deleted" Type="Boolean" />
         </EntityType>
         <EntityContainer Name="WebBanHangASPEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Brand_0242" EntityType="Self.Brand_0242" />
@@ -207,6 +211,7 @@
           <EntitySetMapping Name="Order_0242">
             <EntityTypeMapping TypeName="WebBanHangASPModel.Order_0242">
               <MappingFragment StoreEntitySet="Order_0242">
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -237,6 +242,7 @@
           <EntitySetMapping Name="User_0242">
             <EntityTypeMapping TypeName="WebBanHangASPModel.User_0242">
               <MappingFragment StoreEntitySet="User_0242">
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />

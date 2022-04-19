@@ -157,6 +157,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\SearchHomeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Context\dbModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -2380,6 +2381,8 @@
     <Content Include="Areas\Admin\Views\Category\Trash.cshtml" />
     <Content Include="Areas\Admin\Views\Brand\Trash.cshtml" />
     <Content Include="Areas\Admin\Views\Product\Trash.cshtml" />
+    <Content Include="Areas\Admin\Views\User\Trash.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\Trash.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\ckeditor\adapters\jquery.js" />
     <Content Include="Scripts\ckeditor\build-config.js" />
@@ -2708,6 +2711,7 @@
     <Content Include="Scripts\js\cart.js" />
     <Content Include="Scripts\js\jquery-2.0.0.min.js" />
     <Content Include="Scripts\js\script.js" />
+    <Content Include="Scripts\js\search.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -2734,6 +2738,9 @@
     <Content Include="Views\Brand\ProductBrandGrid.cshtml" />
     <Content Include="Views\Brand\ProductBrandList.cshtml" />
     <Content Include="Views\Payment\Index.cshtml" />
+    <Content Include="Views\SearchHome\SearchProduct.cshtml" />
+    <Content Include="Views\SearchHome\SearchProductByCategory.cshtml" />
+    <Content Include="Views\SearchHome\SearchProductByBrand.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -23,5 +23,6 @@ namespace WebBanHang.Models
         [DisplayName("Mật khẩu")]
         public string Password { get; set; }
         public Nullable<bool> IsAdmin { get; set; }
+        public Nullable<bool> Deleted { get; set; }
     }
 }

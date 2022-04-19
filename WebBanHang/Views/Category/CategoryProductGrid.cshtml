@@ -113,7 +113,7 @@
                     <img src="~/Content/images/items/@item.Avatar">
                 </div> <!-- img-wrap.// -->
                 <figcaption class="info-wrap">
-                    <a href="@Url.Action("Detail", "Product", new {id=item.Id })" class="title mb-2">@item.Name</a>
+                    <a href="@Url.Action("Detail", "Product", new {slug=item.Slug,id=item.Id })" class="title mb-2">@item.Name</a>
                     <div class="price-wrap">
                         <span class="price">@Convert.ToDecimal(@item.Price).ToString("#,##0") Vnđ</span>
                         <small class="text-muted">/per item</small>
@@ -135,11 +135,11 @@
                     <label class="custom-control mb-3 custom-checkbox">
                         <input type="checkbox" class="custom-control-input">
                         <div class="custom-control-label">
-                            Add to compare
+                            So sánh
                         </div>
                     </label>
 
-                    <a href="#" class="btn btn-outline-primary"> <i class="fa fa-envelope"></i> Contact supplier </a>
+                    <a href="#" class="btn btn-outline-primary"> <i class="fa fa-envelope"></i> Liên hệ nhà cung cấp </a>
 
                 </figcaption>
             </figure>

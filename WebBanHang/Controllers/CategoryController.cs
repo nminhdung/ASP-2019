@@ -22,7 +22,7 @@ namespace WebBanHang.Controllers
             return View(objCategory);
         }
         //[Route("san-pham-danh-muc/{slug}/page-{pageNumber:int?}/{id:int?}")]
-        public ActionResult CategoryProduct(int Id=0, int view=0,int pageNumber=1,int limit=8)
+        public ActionResult CategoryProduct(int Id=0, int view=0,int pageNumber=1,int limit=5)
         {
             WebBanHangASPEntities webBanHangASP = new WebBanHangASPEntities();
             

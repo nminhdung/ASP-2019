@@ -1,0 +1,90 @@
+﻿@model PagedList.IPagedList<WebBanHang.Context.Product_0242>
+@using PagedList.Mvc;
+@using PagedList;
+@{
+    ViewBag.Title = "SearchProductByBrand";
+}
+<section class="section-content padding-y">
+    <div class="container">
+        <div id="listProductSearch">
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    <div class="col-md-3">
+                        <figure class="card card-product-grid">
+                            <div class="img-wrap">
+                                @if (item.PriceDiscount != null && item.PriceDiscount > 0)
+                                {
+                                    int sale = (int)(100 - (double)item.PriceDiscount * 100 / (double)item.Price);
+                                    <span class="badge badge-danger"> Giảm @sale % </span>
+                                }
+                                <img src="~/Content/images/items/@item.Avatar">
+                            </div> <!-- img-wrap.// -->
+                            <figcaption class="info-wrap">
+                                <a href="@Url.Action("Detail", "Product", new {slug=item.Slug,id=item.Id })" class="title mb-2">@item.Name</a>
+                                <div class="price-wrap">
+                                    <span class="price">@Convert.ToDecimal(@item.Price).ToString("#,##0") Vnđ</span>
+                                    <small class="text-muted">/per item</small>
+                                </div> <!-- price-wrap.// -->
+
+                                <p class="mb-2"> 2 Pieces  <small class="text-muted">(Min Order)</small></p>
+
+                                <p class="text-muted ">Guangzhou Yichuang Electronic Co</p>
+
+                                <hr>
+
+                                <p class="mb-3">
+                                    <span class="tag"> <i class="fa fa-check"></i> Verified</span>
+                                    <span class="tag"> 2 Years </span>
+                                    <span class="tag"> 23 reviews </span>
+                                    <span class="tag"> Japan </span>
+                                </p>
+
+                                <label class="custom-control mb-3 custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input">
+                                    <div class="custom-control-label">
+                                       So sánh
+                                    </div>
+                                </label>
+
+                                <a href="#" class="btn btn-outline-primary"> <i class="fa fa-envelope"></i> Liên hệ nhà cung cấp </a>
+
+                            </figcaption>
+                        </figure>
+                    </div> <!-- col.// -->
+                }
+            </div>
+        </div>
+        <nav class="mb-4" aria-label="Page navigation sample">
+            <ul class="pagination">
+                Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+                @Html.PagedListPager(Model, page => Url.Action("SearchProductByBrand",
+               new { page = page, currentFilter = ViewBag.CurrentFilter }))
+
+            </ul>
+        </nav>
+</section>
+
+
+
+<section class="padding-y-lg bg-light border-top">
+    <div class="container">
+
+        <p class="pb-2 text-center">Thông báo những sản phẩm và tin tức mới đến hộp thư của bạn</p>
+
+        <div class="row justify-content-md-center">
+            <div class="col-lg-4 col-sm-6">
+                <form class="form-row">
+                    <div class="col-8">
+                        <input class="form-control" placeholder="Your Email" type="email">
+                    </div> <!-- col.// -->
+                    <div class="col-4">
+                        <button type="submit" class="btn btn-block btn-warning"> <i class="fa fa-envelope"></i> Subscribe </button>
+                    </div> <!-- col.// -->
+                </form>
+                <small class="form-text">Chúng tôi sẽ không chia sẽ Email cho bất kỳ ai. </small>
+            </div> <!-- col-md-6.// -->
+        </div>
+    </div> <!-- container .//  -->
+</section>
+

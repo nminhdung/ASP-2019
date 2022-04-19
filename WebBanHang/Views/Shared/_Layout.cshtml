@@ -44,15 +44,16 @@
                         </a> <!-- brand-wrap.// -->
                     </div>
                     <div class="col-xl-6 col-lg-5 col-md-6">
-                        <form action="#" class="search-header">
+                        <form action="@Url.Action("SearchProduct","SearchHome")" class="search-header">
                             <div class="input-group w-100">
-                                <select class="custom-select border-right" name="category_name">
-                                    <option value="">All type</option>
-                                    <option value="codex">Special</option>
-                                    <option value="comments">Only best</option>
-                                    <option value="content">Latest</option>
+                                <select class="custom-select border-right" name="option_search">
+                                    <option value="@Url.Action("SearchProduct","SearchHome")">Sản phẩm</option>
+                                    <option value="@Url.Action("SearchProductByBrand","SearchHome")">Thương hiệu</option>
+                                    <option value="@Url.Action("SearchProductByCategory","SearchHome")">Danh mục</option>
                                 </select>
-                                <input type="text" class="form-control" placeholder="Search">
+                                <input type="text" class="form-control" placeholder="Search" name="SearchString" required="required" 
+                                 oninvalid="this.setCustomValidity('Nhập sản phẩm bạn muốn tìm')"
+                                       oninput="this.setCustomValidity('')"/>
 
                                 <div class="input-group-append">
                                     <button class="btn btn-primary" type="submit">
@@ -132,7 +133,7 @@
                                 <a href="#" class="widget-view">
                                     <div class="icon-area">
                                         <i class="fa fa-comment-dots"></i>
-                                        <span class="notify">1</span>
+                                     
                                     </div>
                                     <small class="text"> Thông báo </small>
                                 </a>
@@ -292,7 +293,7 @@
         </div><!-- //container -->
     </footer>
     <script src="~/Scripts/ckeditor/ckeditor.js"></script>
-
+    <script src="~/Scripts/js/search.js"></script>
     @if (TempData["msg"] != null)
     {
         <script>Toast("", '@TempData["msg"]',"")</script>

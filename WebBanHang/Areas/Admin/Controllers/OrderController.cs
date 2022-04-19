@@ -1,6 +1,7 @@
 ﻿using PagedList;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -30,7 +31,7 @@ namespace WebBanHang.Areas.Admin.Controllers
             }
             else
             {
-                lstOrder = webBanHangASP.Order_0242.ToList();
+                lstOrder = webBanHangASP.Order_0242.Where(n=>n.Deleted==false).ToList();
             }
             ViewBag.CurrentFilter = SearchString;
             //Số lượng item mỗi trang
@@ -68,6 +69,28 @@ namespace WebBanHang.Areas.Admin.Controllers
         {
             var objOrder = webBanHangASP.Order_0242.Where(n => n.Id == id).FirstOrDefault();
             return View(objOrder);
+        }
+        public ActionResult Trash()
+        {
+            var objOrder = webBanHangASP.Order_0242.Where(n => n.Deleted == true).ToList();
+            return View(objOrder);
+        }
+
+        public ActionResult DelTrash(int Id)
+        {
+            var objOrder = webBanHangASP.Order_0242.Where(n => n.Id == Id).FirstOrDefault();
+            objOrder.Deleted = true;
+            webBanHangASP.Entry(objOrder).State = EntityState.Modified;
+            webBanHangASP.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        public ActionResult Restore(int Id)
+        {
+            var objOrder = webBanHangASP.Order_0242.Where(n => n.Id == Id).FirstOrDefault();
+            objOrder.Deleted = false;
+            webBanHangASP.Entry(objOrder).State = EntityState.Modified;
+            webBanHangASP.SaveChanges();
+            return RedirectToAction("Index");
         }
         [HttpGet]
         public ActionResult Delete(int id)
