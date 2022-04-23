@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using WebBanHang.Context;
@@ -55,7 +56,8 @@ namespace WebBanHang.Controllers
                 SearchString = currentFilter;
 
             }
-            var objCategory = webBanHangASP.Category_0242.Where(n => n.Name.Contains(SearchString)).FirstOrDefault();
+            string stringConvert = ConvertTextToSlug(SearchString);
+            var objCategory = webBanHangASP.Category_0242.Where(n => n.Slug.Contains(stringConvert)).FirstOrDefault();
             if (!string.IsNullOrEmpty(SearchString))
             {
                 lstProduct = webBanHangASP.Product_0242.Where(n => n.CategoryId == objCategory.Id).ToList();
@@ -102,5 +104,28 @@ namespace WebBanHang.Controllers
             lstProduct = lstProduct.OrderByDescending(n => n.Id).ToList();
             return View(lstProduct.ToPagedList(pageNumber, pageSize));
         }
+        public string ConvertTextToSlug(string s)
+        {
+            StringBuilder sb = new StringBuilder();
+            bool wasHyphen = true;
+            foreach (char c in s)
+            {
+                if (char.IsLetterOrDigit(c))
+                {
+                    sb.Append(char.ToLower(c));
+                    wasHyphen = false;
+                }
+                else if (char.IsWhiteSpace(c) && !wasHyphen)
+                {
+                    sb.Append('-');
+                    wasHyphen = true;
+                }
+            }
+            // Avoid trailing hyphens
+            if (wasHyphen && sb.Length > 0)
+                sb.Length--;
+            return sb.ToString();
+        }
+
     }
 }

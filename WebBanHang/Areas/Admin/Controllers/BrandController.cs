@@ -128,17 +128,30 @@ namespace WebBanHang.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Edit(int id, Brand_0242 objBrand)
         {
-            if (objBrand.ImageUpload != null)
+            if (ModelState.IsValid)
             {
-                string fileName = Path.GetFileNameWithoutExtension(objBrand.ImageUpload.FileName);
-                string extension = Path.GetExtension(objBrand.ImageUpload.FileName);
-                fileName = fileName  + extension;
-                objBrand.Avatar = fileName;
-                objBrand.ImageUpload.SaveAs(Path.Combine(Server.MapPath("~/Content/images/"), fileName));
-            }
+                try
+                {
+                    if (objBrand.ImageUpload != null)
+                    {
+                        string fileName = Path.GetFileNameWithoutExtension(objBrand.ImageUpload.FileName);
+                        string extension = Path.GetExtension(objBrand.ImageUpload.FileName);
+                        fileName = fileName + extension;
+                        objBrand.Avatar = fileName;
+                        objBrand.ImageUpload.SaveAs(Path.Combine(Server.MapPath("~/Content/images/"), fileName));
+                    }
+                    objBrand.Slug = ConvertTextToSlug(objBrand.Name);
+                    webBanHangASP.Entry(objBrand).State = EntityState.Modified;
+                    webBanHangASP.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                catch (Exception)
+                {
+                    return RedirectToAction("Edit");
 
-            webBanHangASP.Entry(objBrand).State = EntityState.Modified;
-            webBanHangASP.SaveChanges();
+                }
+            }
+            
             return View(objBrand);
         }
 

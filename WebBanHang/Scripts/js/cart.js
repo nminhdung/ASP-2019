@@ -11,4 +11,5 @@
     const p = document.querySelector("#card-product");
     p.children[2].querySelector("strong").innerHTML =
         total.toLocaleString('en-US', { style: 'currency', currency: 'VND' });
+    
 }

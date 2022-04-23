@@ -130,17 +130,29 @@ namespace WebBanHang.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Edit(int id, Category_0242 objCategory)
         {
-            if (objCategory.ImageUpload != null)
+            if (ModelState.IsValid)
             {
-                string fileName = Path.GetFileNameWithoutExtension(objCategory.ImageUpload.FileName);
-                string extension = Path.GetExtension(objCategory.ImageUpload.FileName);
-                fileName = fileName + extension;
-                objCategory.Avatar = fileName;
-                objCategory.ImageUpload.SaveAs(Path.Combine(Server.MapPath("~/Content/images/"), fileName));
+                try
+                {
+                    if (objCategory.ImageUpload != null)
+                    {
+                        string fileName = Path.GetFileNameWithoutExtension(objCategory.ImageUpload.FileName);
+                        string extension = Path.GetExtension(objCategory.ImageUpload.FileName);
+                        fileName = fileName + extension;
+                        objCategory.Avatar = fileName;
+                        objCategory.ImageUpload.SaveAs(Path.Combine(Server.MapPath("~/Content/images/"), fileName));
+                    }
+                    objCategory.Slug = ConvertTextToSlug(objCategory.Name);
+                    webBanHangASP.Entry(objCategory).State = EntityState.Modified;
+                    webBanHangASP.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                catch(Exception)
+                {
+                    return RedirectToAction("Edit");
+                }
             }
-            objCategory.Slug = ConvertTextToSlug(objCategory.Name);
-            webBanHangASP.Entry(objCategory).State = EntityState.Modified;
-            webBanHangASP.SaveChanges();
+            
             return View(objCategory);
         }
         public string convertToUnSign3(string s)

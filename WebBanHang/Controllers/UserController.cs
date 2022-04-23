@@ -37,15 +37,20 @@ namespace WebBanHang.Controllers
                 }
                 else
                 {
-                    TempData["msg"] = "Đăng ký thất bại";
-                    return View();
+                    TempData["Error"] = "Đăng ký thất bại";
+                    return RedirectToAction("Register");
                 }
 
-
+            }
+            else
+            {
+                if ((_user.FirstName == null) || (_user.LastName == null) || (_user.Email == null) || (_user.Password == null))
+                {
+                    TempData["Error"] = "Vui lòng nhập đủ thông tin";
+                    return RedirectToAction("Register");
+                }
             }
             return View();
-
-
         }
 
         //create a string MD5

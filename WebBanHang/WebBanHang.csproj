@@ -2383,6 +2383,7 @@
     <Content Include="Areas\Admin\Views\Product\Trash.cshtml" />
     <Content Include="Areas\Admin\Views\User\Trash.cshtml" />
     <Content Include="Areas\Admin\Views\Order\Trash.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\Edit.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\ckeditor\adapters\jquery.js" />
     <Content Include="Scripts\ckeditor\build-config.js" />

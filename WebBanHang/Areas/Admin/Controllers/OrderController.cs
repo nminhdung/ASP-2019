@@ -106,5 +106,19 @@ namespace WebBanHang.Areas.Admin.Controllers
             webBanHangASP.SaveChanges();
             return RedirectToAction("Index");
         }
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            var objOrder = webBanHangASP.Order_0242.Where(n => n.Id == id).FirstOrDefault();
+            return View(objOrder);
+        }
+        [ValidateInput(false)]
+        [HttpPost]
+        public ActionResult Edit(int id, Order_0242 objOrder)
+        {
+            webBanHangASP.Entry(objOrder).State = EntityState.Modified;
+            webBanHangASP.SaveChanges();
+            return View(objOrder);
+        }
     }
 }

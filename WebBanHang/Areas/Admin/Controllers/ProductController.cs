@@ -134,25 +134,29 @@ namespace WebBanHang.Areas.Admin.Controllers
         public ActionResult Edit(int id, Product_0242 objProduct)
         {
             this.LoadData();
-            try
+            if (ModelState.IsValid)
             {
-                if (objProduct.ImageUpload != null)
+                try
                 {
-                    string fileName = Path.GetFileNameWithoutExtension(objProduct.ImageUpload.FileName);
-                    string extension = Path.GetExtension(objProduct.ImageUpload.FileName);
-                    fileName = fileName + extension;
-                    objProduct.Avatar = fileName;
-                    objProduct.ImageUpload.SaveAs(Path.Combine(Server.MapPath("~/Content/images/"), fileName));
+                    if (objProduct.ImageUpload != null)
+                    {
+                        string fileName = Path.GetFileNameWithoutExtension(objProduct.ImageUpload.FileName);
+                        string extension = Path.GetExtension(objProduct.ImageUpload.FileName);
+                        fileName = fileName + extension;
+                        objProduct.Avatar = fileName;
+                        objProduct.ImageUpload.SaveAs(Path.Combine(Server.MapPath("~/Content/images/"), fileName));
+                    }
+                    objProduct.Slug = ConvertTextToSlug(objProduct.Name);
+                    webBanHangASP.Entry(objProduct).State = EntityState.Modified;
+                    webBanHangASP.SaveChanges();
+                    return RedirectToAction("Index");
                 }
-
-                webBanHangASP.Entry(objProduct).State = EntityState.Modified;
-                webBanHangASP.SaveChanges();
-                return RedirectToAction("Index");
+                catch (Exception)
+                {
+                    return RedirectToAction("Edit");
+                }
             }
-            catch (Exception)
-            {
-                return RedirectToAction("Edit");
-            }
+           
             return View(objProduct);
         }
         void LoadData() {

@@ -9,7 +9,7 @@
 @using (Html.BeginForm("Edit", "Category", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -26,8 +26,11 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Avatar, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <input type="file" name="ImageUpload"/>
+                <input type="file" name="ImageUpload" />
                 <input type="text" class="d-none" name="Avatar" value="@Model.Avatar" />
+            </div>
+            <div class="col-md-2">
+                <img id="avatar-source" src="~/Content/images/category/@Model.Avatar" width="100" height="100" />
             </div>
         </div>
 
@@ -73,7 +76,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Lưu" class="btn btn-default" />
             </div>
         </div>
     </div>
