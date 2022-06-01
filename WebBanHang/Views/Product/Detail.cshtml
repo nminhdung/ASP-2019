@@ -29,10 +29,10 @@
                             <div> <a href="#"><img src="~/Content/images/items/@Model.Avatar"></a></div>
                         </div> <!-- slider-product.// -->
                         <div class="thumbs-wrap">
-                            <a href="#" class="item-thumb"> <img src="~/Content/images/items/15.jpg"></a>
-                            <a href="#" class="item-thumb"> <img src="~/Content/images/items/15-1.jpg"></a>
-                            <a href="#" class="item-thumb"> <img src="~/Content/images/items/15-2.jpg"></a>
-                            <a href="#" class="item-thumb"> <img src="~/Content/images/items/15-1.jpg"></a>
+                            <a href="#" class="item-thumb"> <img src="~/Content/images/items/@Model.Avatar"></a>
+                            <a href="#" class="item-thumb"> <img src="~/Content/images/items/@Model.Avatar"></a>
+                            <a href="#" class="item-thumb"> <img src="~/Content/images/items/@Model.Avatar"></a>
+                            <a href="#" class="item-thumb"> <img src="~/Content/images/items/@Model.Avatar"></a>
                         </div> <!-- slider-nav.// -->
                     </article> <!-- gallery-wrap .end// -->
                 </div> <!-- card.// -->
@@ -65,22 +65,18 @@
                     </div> <!-- price-detail-wrap .// -->
 
                     <p>
-                        @Model.ShortDesc
+                       @Html.Raw(@Model.ShortDesc)
                     </p>
-
-
-                    
-
                     <div class="form-row  mt-4">
                         <div class="form-group col-md flex-grow-0">
                             <div class="input-group mb-3 input-spinner">
-                                <div class="input-group-prepend">
+                                @*<div class="input-group-prepend">
                                     <button class="btn btn-light" type="button" id="button-plus"> + </button>
-                                </div>
-                                <input type="text" class="form-control" id="ipQuantity" value="1">
-                                <div class="input-group-append">
+                                </div>*@
+                                <input type="number" class="form-control" id="ipQuantity" style="width:5em;max-width:100%;" value="1"min="1">
+                                @*<div class="input-group-append">
                                     <button class="btn btn-light" type="button" id="button-minus"> &minus; </button>
-                                </div>
+                                </div>*@
                             </div>
                         </div> <!-- col.// -->
                         <div class="form-group col-md">
@@ -225,7 +221,13 @@
             //lấy id sản phẩm
             model.Id = @Model.Id;
             //lấy số lượng 
-            model.Quantity = $("#ipQuantity").val();
+            if ($("#ipQuantity").val() < 0) {
+                alert("Số lượng không được âm")
+            }
+            else {
+                model.Quantity = $("#ipQuantity").val();
+            }
+            
             $.ajax({
                 type: "POST",
                 url: '@Url.Action("AddToCart", "Cart")',

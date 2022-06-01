@@ -20,6 +20,7 @@ namespace WebBanHang.Controllers
             }
             else
             {
+                @Session["count"] = 0;
                 //lấy thông tin từ giỏ hàng từ biến session
                 var lstCart = (List<CartModel>)Session["cart"];
                 //gán dữ liệu cho Order
@@ -28,6 +29,7 @@ namespace WebBanHang.Controllers
                 objOrder.UserId = int.Parse(Session["idUser"].ToString());
                 objOrder.CreatedOnUtc = DateTime.Now;
                 objOrder.Status = true;
+                objOrder.Deleted = false;
                 //thêm đơn hàng
                 webBanHangASP.Order_0242.Add(objOrder);
                 //lưu thông tin dữ liệu vào bảng Order
@@ -46,6 +48,7 @@ namespace WebBanHang.Controllers
                 }
                 webBanHangASP.OrderDetail_0242.AddRange(lstOrderDetail);
                 webBanHangASP.SaveChanges();
+                @Session["cart"]=null;
             }
             return View();
         }

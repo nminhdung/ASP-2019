@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using WebBanHang.Context;
@@ -58,6 +59,8 @@ namespace WebBanHang.Controllers
             }
             string stringConvert = ConvertTextToSlug(SearchString);
             var objCategory = webBanHangASP.Category_0242.Where(n => n.Slug.Contains(stringConvert)).FirstOrDefault();
+
+            //var objCategory = webBanHangASP.Category_0242.Where(n => n.Name== SearchString).FirstOrDefault();
             if (!string.IsNullOrEmpty(SearchString))
             {
                 lstProduct = webBanHangASP.Product_0242.Where(n => n.CategoryId == objCategory.Id).ToList();
@@ -104,6 +107,12 @@ namespace WebBanHang.Controllers
             lstProduct = lstProduct.OrderByDescending(n => n.Id).ToList();
             return View(lstProduct.ToPagedList(pageNumber, pageSize));
         }
+        public string convertToUnSign3(string s)
+        {
+            Regex regex = new Regex("\\p{IsCombiningDiacriticalMarks}+");
+            string temp = s.Normalize(NormalizationForm.FormD);
+            return regex.Replace(temp, String.Empty).Replace('\u0111', 'd').Replace('\u0110', 'D');
+        }
         public string ConvertTextToSlug(string s)
         {
             StringBuilder sb = new StringBuilder();
@@ -124,7 +133,7 @@ namespace WebBanHang.Controllers
             // Avoid trailing hyphens
             if (wasHyphen && sb.Length > 0)
                 sb.Length--;
-            return sb.ToString();
+            return convertToUnSign3(sb.ToString());
         }
 
     }

@@ -2,9 +2,35 @@
 @{
     ViewBag.Title = "ShoppingCart";
 
-
 }
+<script type="text/javascript">
+    $(function () {
+        $("#removecart").click(function () {
+            var model = {};
+            //lấy id sản phẩm
+            model.Id = $("#productid").val();
+            //lấy số lượng
 
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("Remove", "Cart")',
+                data: JSON.stringify(model),
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function () {
+                    Toast("Success", "Xóa sản phẩm thành công", "Thông báo");
+                    $('#CartCount').text(@Session["count"] - 1);
+                    $("#product-" + model.Id).remove();
+                },
+                error: function (e) {
+                    console.log(e);
+                    Toast("Error",  "Lỗi khi xóa sản phẩm", "Thông báo");
+                }
+            });
+            return false;
+        });
+    });
+</script>
 <!-- ========================= SECTION CONTENT ========================= -->
 <section class="section-content padding-y">
     <div class="container">
@@ -27,7 +53,7 @@
                             {
                                 foreach (var item in Model)
                                 {
-                                    <tr class="product">
+                                    <tr class="product" id="product-@item.Product.Id">
                                         <td>
                                             <figure class="itemside">
                                                 <div class="aside"><img src="~/Content/images/items/@item.Product.Avatar" class="img-sm"></div>
@@ -49,9 +75,9 @@
                                             </div> <!-- price-wrap .// -->
                                         </td>
                                         <td class="text-right">
-                                            <input type="hidden" value="@item.Product.Id" class="productid" />
+                                            <input type="hidden" value="@item.Product.Id" id="productid" />
                                             <a data-original-title="Save to Wishlist" title="" href="" class="btn btn-light" data-toggle="tooltip"> <i class="fa fa-heart"></i></a>
-                                            <a href="#" class="btn btn-light removecart"> Xóa</a>
+                                            <a href="" class="btn btn-light removecart" id="removecart"> Xóa</a>
                                         </td>
                                     </tr>
                                 }
@@ -94,7 +120,7 @@
                     <div id="card-product" class="card-body ">
                         <dl class="dlist-align">
                             <dt>Giá gốc:</dt>
-                            <dd class="text-right">USD 568</dd>
+                            <dd class="text-right price-origin"></dd>
                         </dl>
                         <dl class="dlist-align">
                             <dt>Giá giảm:</dt>
@@ -140,9 +166,9 @@
 </section>
 <!-- ========================= SECTION  END// ========================= -->
 <!-- ========================= FOOTER ========================= -->
-<script type="text/javascript">
+@*<script type="text/javascript">
     $(function () {
-
+        
         $("body").click(function (e) {
             if (e.target.closest(".removecart")) {
                 const tr = e.target.closest("tr");
@@ -150,6 +176,7 @@
                 //lấy id sản phẩm
                 model.Id = Number(tr.querySelector(".productid").value);
 
+                console.log(tr)
                 $.ajax({
                     type: "POST",
                     url: '@Url.Action("Remove", "Cart")',
@@ -158,11 +185,12 @@
                     contentType: "application/json; charset=utf-8",
                     success: function (result) {
                         Toast("Success", "Xóa sản phẩm thành công", "Thông báo");
-
+                        console.log(result)
                         if (@Session["count"]> 0) {
                             $('#CartCount').text(result.data);
                         }
 
+                        console.log(tr.parentElement)
                         tr.parentElement.removeChild(tr);
                         getTotal();
 
@@ -175,9 +203,7 @@
             }
         });
     });
+</script>*@
 
-
-
-</script>
 <script src="~/Scripts/js/cart.js"></script>
 <script>getTotal();</script>

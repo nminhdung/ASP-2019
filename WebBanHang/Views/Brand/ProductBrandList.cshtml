@@ -232,7 +232,7 @@
             <ul class="pagination-2">
                 Trang @(Model.ListProductBrand.PageCount < Model.ListProductBrand.PageNumber ? 0 : Model.ListProductBrand.PageNumber) of @Model.ListProductBrand.PageCount
                 @Html.PagedListPager(Model.ListProductBrand, page => Url.Action("ProductBrand",
-               new { pageNumber = page,Id=ViewBag.CurrentId, currentFilter = ViewBag.CurrentFilter}),
+               new { pageNumber = page,Id=ViewBag.CurrentBrandId, currentFilter = ViewBag.CurrentFilter}),
                PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions() { HttpMethod = "GET", UpdateTargetId = "listProductBrand" })
                )
             </ul>

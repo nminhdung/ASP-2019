@@ -15,19 +15,19 @@ namespace WebBanHang.Controllers
         [Route("tat-ca-danh-muc")]
         public ActionResult CategoryList()
         {
-            
             WebBanHangASPEntities webBanHangASP = new WebBanHangASPEntities();
             CategoryModel objCategory = new CategoryModel();
             objCategory.ListCategory = webBanHangASP.Category_0242.ToList();
             return View(objCategory);
         }
-        //[Route("san-pham-danh-muc/{slug}/page-{pageNumber:int?}/{id:int?}")]
+        [Route("san-pham-danh-muc/{slug}/page-{pageNumber:int?}/{id:int?}")]
         public ActionResult CategoryProduct(int Id=0, int view=0,int pageNumber=1,int limit=5)
         {
             WebBanHangASPEntities webBanHangASP = new WebBanHangASPEntities();
             
             CategoryModel objCategory = new CategoryModel();
             objCategory.id = Id;
+            ViewBag.CurrentCategoryId = Id;
             objCategory.view = view;
             //Lấy danh sách category
             objCategory.ListCategory = webBanHangASP.Category_0242.ToList();
@@ -35,7 +35,7 @@ namespace WebBanHang.Controllers
             objCategory.ListBrand = webBanHangASP.Brand_0242.ToList();
             //Lấy danh sách sản phẩm theo category
          
-            if (Id == 0)
+            if (Id == 0 )
             {
                 objCategory.ListProductCategory = webBanHangASP.Product_0242.OrderByDescending(n=>n.Id).ToPagedList(pageNumber,limit);
             }

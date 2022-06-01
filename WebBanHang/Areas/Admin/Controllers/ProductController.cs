@@ -191,6 +191,12 @@ namespace WebBanHang.Areas.Admin.Controllers
             DataTable dtProductType = converter.ToDataTable(lstProductType);
             ViewBag.ProductType = objCommon.ToSelectList(dtProductType, "Id", "Name");
         }
+        public string convertToUnSign3(string s)
+        {
+            Regex regex = new Regex("\\p{IsCombiningDiacriticalMarks}+");
+            string temp = s.Normalize(NormalizationForm.FormD);
+            return regex.Replace(temp, String.Empty).Replace('\u0111', 'd').Replace('\u0110', 'D');
+        }
         public  string ConvertTextToSlug(string s)
         {
             StringBuilder sb = new StringBuilder();

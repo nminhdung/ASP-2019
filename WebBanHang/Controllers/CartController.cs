@@ -16,6 +16,20 @@ namespace WebBanHang.Controllers
         {
             return View((List<CartModel>)Session["cart"]);
         }
+        [HttpPost]
+        public ActionResult ChangeQuantity(int id, int quantity)
+        {
+            List<CartModel> cart = (List<CartModel>)Session["cart"];
+            //kiểm tra sản phẩm có tồn tại trong giỏ hàng chưa???
+            int index = isExist(id);
+            if (index != -1)
+            {
+                //nếu sp tồn tại trong giỏ hàng thì cộng thêm số lượng
+                cart[index].Quantity = quantity;
+            }
+            Session["cart"] = cart;
+            return Json(new { Message = "Thành công",data=cart, JsonRequestBehavior.AllowGet });
+        }
         public ActionResult AddToCart(int id,int quantity )
         {
             if (Session["cart"] == null)

@@ -19,7 +19,9 @@
                                     int sale = (int)(100 - (double)item.PriceDiscount * 100 / (double)item.Price);
                                     <span class="badge badge-danger"> Giảm @sale % </span>
                                 }
+                            <a href="@Url.Action("Detail","Product",new {slug=item.Slug,id=item.Id })">
                                 <img src="~/Content/images/items/@item.Avatar">
+                            </a> 
                             </div> <!-- img-wrap.// -->
                             <figcaption class="info-wrap">
                                 <a href="@Url.Action("Detail", "Product", new {slug=item.Slug,id=item.Id })" class="title mb-2">@item.Name</a>
